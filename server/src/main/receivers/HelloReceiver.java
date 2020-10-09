@@ -33,7 +33,7 @@ public class HelloReceiver extends Receiver
             {
                 HashMap<String, String> message_data = new HashMap<>();
                 message_data.put("RAND-COOKIE", subscriber.rand_cookie);
-                message_data.put("PORT", "" + subscriber.port);
+                message_data.put("PORT-NUMBER", "" + subscriber.port);
 
                 AuthSuccessMessage authSuccessMessage = new AuthSuccessMessage();
                 if(authSuccessMessage.sendAble(message_data))

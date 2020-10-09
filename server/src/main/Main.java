@@ -1,8 +1,6 @@
 package main;
 
-import main.messages.AuthSuccessMessage;
 import main.objects.Subscriber;
-import main.receivers.JSONData;
 import main.workers.UDPWorker;
 
 import java.io.IOException;
@@ -28,7 +26,7 @@ public class Main
         subscribers = new HashMap<>();
 
         try {
-            udp_worker = new UDPWorker(this,5000);
+            udp_worker = new UDPWorker(this,8000);
         } catch(IOException exception) {
             System.out.println("Failed to setup UDP Worker!");
             System.exit(0);

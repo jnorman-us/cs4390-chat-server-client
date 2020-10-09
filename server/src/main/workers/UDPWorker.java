@@ -1,13 +1,14 @@
 package main.workers;
 
-import main.receivers.JSONData;
 import main.Main;
 import main.receivers.HelloReceiver;
+import main.receivers.JSONData;
 import main.receivers.Receiver;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.util.Arrays;
 
 public class UDPWorker implements Runnable
 {
@@ -32,7 +33,6 @@ public class UDPWorker implements Runnable
 
         while(true)
         {
-            System.out.println(socket.getLocalAddress());
             datagramPacket = new DatagramPacket(received, received.length);
             try {
                 socket.receive(datagramPacket);
@@ -40,18 +40,25 @@ public class UDPWorker implements Runnable
                 String parsed = parse(received);
                 JSONData data = new JSONData(parsed);
 
-                System.out.println(parsed);
-
                 for(Receiver receiver : receivers)
                 {
                     if(receiver.receivable(data))
                     {
-                        receiver.action(main, data);
+                        String response = receiver.action(main, data);
+                        byte[] bytes_to_send = response.getBytes();
+                        DatagramPacket sendPacket = new DatagramPacket(
+                                bytes_to_send,
+                                bytes_to_send.length,
+                                datagramPacket.getAddress(),
+                                datagramPacket.getPort()
+                        );
+                        socket.send(sendPacket);
                     }
                 }
+                Arrays.fill(received, (byte)0);
             } catch (IOException exception) {
                 System.out.println("IO Exception");
-                continue;
+                break;
             }
         }
     }
@@ -63,9 +70,9 @@ public class UDPWorker implements Runnable
 
         StringBuilder raw = new StringBuilder();
         int i = 0;
-        while(received[i] != 0);
+        while(received[i] != (byte)0)
         {
-            raw.append(received[i]);
+            raw.append((char)received[i]);
             i ++;
         }
 

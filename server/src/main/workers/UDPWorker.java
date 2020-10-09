@@ -1,5 +1,6 @@
 package main.workers;
 
+import main.receivers.JSONData;
 import main.Main;
 import main.receivers.HelloReceiver;
 import main.receivers.Receiver;
@@ -19,7 +20,7 @@ public class UDPWorker implements Runnable
     public UDPWorker(Main main, int port) throws IOException
     {
         this.main = main;
-        socket = new DatagramSocket();
+        socket = new DatagramSocket(port);
         receivers = new Receiver[]{ new HelloReceiver() };
     }
 
@@ -31,21 +32,31 @@ public class UDPWorker implements Runnable
 
         while(true)
         {
+            System.out.println(socket.getLocalAddress());
             datagramPacket = new DatagramPacket(received, received.length);
             try {
                 socket.receive(datagramPacket);
 
-                Receiver receiver = receive(received);
+                String parsed = parse(received);
+                JSONData data = new JSONData(parsed);
+
+                System.out.println(parsed);
+
+                for(Receiver receiver : receivers)
+                {
+                    if(receiver.receivable(data))
+                    {
+                        receiver.action(main, data);
+                    }
+                }
             } catch (IOException exception) {
                 System.out.println("IO Exception");
                 continue;
             }
-
-
         }
     }
 
-    public Receiver receive(byte[] received)
+    public String parse(byte[] received)
     {
         if(received == null)
             return null;
@@ -57,15 +68,7 @@ public class UDPWorker implements Runnable
             raw.append(received[i]);
             i ++;
         }
-        String toParse = raw.toString();
 
-        for(Receiver receiver : receivers)
-        {
-            if(receiver.parse(toParse))
-            {
-                return receiver;
-            }
-        }
-        return null;
+        return raw.toString();
     }
 }

@@ -1,11 +1,12 @@
 package main;
 
-import main.receivers.HelloReceiver;
-import main.workers.TCPWorker;
+import main.messages.AuthSuccessMessage;
+import main.objects.Subscriber;
+import main.receivers.JSONData;
 import main.workers.UDPWorker;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Main
 {
@@ -13,32 +14,36 @@ public class Main
     {
         // object instance to keep track of all of the running TCPWorkers
         Main main = new Main();
-
-        HelloReceiver test = new HelloReceiver();
-
-        System.out.println(test.parse("{\"receiver\": \"HELLO\", \"CLIENT-ID-A\": \"Wine_Craft\"}"));
-        System.out.println(test.json_data);
+        main.subscribers.put("austin-li", new Subscriber("austin-li"));
+        main.subscribers.put("joseph-norman", new Subscriber("joseph-norman"));
+        main.subscribers.put("josh-guzman", new Subscriber("josh-guzman"));
+        main.subscribers.put("kevin-salinda", new Subscriber("kevin-salinda"));
     }
 
+    private HashMap<String, Subscriber> subscribers;
     private UDPWorker udp_worker; // one UDP server
-    private ArrayList<TCPWorker> tcp_workers; // that opens up several TCP servers
 
     public Main()
     {
+        subscribers = new HashMap<>();
+
         try {
-            this.udp_worker = new UDPWorker(this,5000);
+            udp_worker = new UDPWorker(this,5000);
         } catch(IOException exception) {
             System.out.println("Failed to setup UDP Worker!");
             System.exit(0);
         }
-        this.tcp_workers = new ArrayList<TCPWorker>();
 
-        Thread udp_thread = new Thread(this.udp_worker);
+        Thread udp_thread = new Thread(udp_worker);
         udp_thread.start();
     }
 
-    public void createTCPWorker()
+    public Subscriber getSubscriber(String clientID)
     {
-
+        if(subscribers.containsKey(clientID))
+        {
+            return subscribers.get(clientID);
+        }
+        return null;
     }
 }

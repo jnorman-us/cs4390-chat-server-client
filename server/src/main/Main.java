@@ -1,6 +1,7 @@
 package main;
 
 import main.objects.Subscriber;
+import main.workers.TCPWorker;
 import main.workers.UDPWorker;
 
 import java.io.IOException;
@@ -12,18 +13,24 @@ public class Main
     {
         // object instance to keep track of all of the running TCPWorkers
         Main main = new Main();
+
+        // hard encoded, but maybe we will have a text file to import these?
         main.subscribers.put("austin-li", new Subscriber("austin-li"));
         main.subscribers.put("joseph-norman", new Subscriber("joseph-norman"));
         main.subscribers.put("josh-guzman", new Subscriber("josh-guzman"));
         main.subscribers.put("kevin-salinda", new Subscriber("kevin-salinda"));
     }
 
+    // keeps track of all of the registered subscribers to this messaging platform
     private HashMap<String, Subscriber> subscribers;
+
     private UDPWorker udp_worker; // one UDP server
+    private HashMap<String, TCPWorker> tcp_workers;
 
     public Main()
     {
         subscribers = new HashMap<>();
+        tcp_workers = new HashMap<>();
 
         try {
             udp_worker = new UDPWorker(this,8000);
@@ -34,6 +41,23 @@ public class Main
 
         Thread udp_thread = new Thread(udp_worker);
         udp_thread.start();
+    }
+
+    public boolean createTCPWorker(Subscriber subscriber)
+    {
+        if(tcp_workers.containsKey(subscriber.clientID))
+        {
+            tcp_workers.get(subscriber.clientID).stop();
+        }
+
+        try {
+            TCPWorker newWorker = new TCPWorker(this, subscriber);
+            tcp_workers.put(subscriber.clientID, newWorker);
+            newWorker.start();
+        } catch(IOException exception) {
+            return false;
+        }
+        return true;
     }
 
     public Subscriber getSubscriber(String clientID)

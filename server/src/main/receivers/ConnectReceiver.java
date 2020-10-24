@@ -1,6 +1,7 @@
 package main.receivers;
 
 import main.Main;
+import main.objects.Response;
 
 public class ConnectReceiver extends Receiver
 {
@@ -10,8 +11,8 @@ public class ConnectReceiver extends Receiver
     }
 
     @Override
-    public String action(Main main, JSONData data)
+    public Response action(Main main, JSONData data)
     {
-        return "";
+        return new Response(false, "");
     }
 }

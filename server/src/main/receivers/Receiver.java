@@ -1,6 +1,7 @@
 package main.receivers;
 
 import main.Main;
+import main.objects.Response;
 
 public abstract class Receiver
 {
@@ -20,5 +21,5 @@ public abstract class Receiver
         return data.receivable(this);
     }
 
-    public abstract String action(Main main, JSONData data);
+    public abstract Response action(Main main, JSONData data);
 }

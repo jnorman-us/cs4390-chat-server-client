@@ -3,6 +3,7 @@ package main.receivers;
 import main.Main;
 import main.messages.AuthFailMessage;
 import main.messages.AuthSuccessMessage;
+import main.objects.Response;
 import main.objects.Subscriber;
 
 import java.util.HashMap;
@@ -20,7 +21,7 @@ public class HelloReceiver extends Receiver
     }
 
     @Override
-    public String action(Main main, JSONData data)
+    public Response action(Main main, JSONData data)
     {
         Subscriber subscriber = main.getSubscriber(getClientID(data));
 
@@ -29,7 +30,8 @@ public class HelloReceiver extends Receiver
             subscriber.generateRandomCookie();
             subscriber.generatePortNumber();
 
-            if(subscriber.generateTCPWorker(main))
+            // attempt to generate a TCP worker for this subscriber
+            if(main.createTCPWorker(subscriber))
             {
                 HashMap<String, String> message_data = new HashMap<>();
                 message_data.put("RAND-COOKIE", subscriber.rand_cookie);
@@ -38,11 +40,11 @@ public class HelloReceiver extends Receiver
                 AuthSuccessMessage authSuccessMessage = new AuthSuccessMessage();
                 if(authSuccessMessage.sendAble(message_data))
                 {
-                    return authSuccessMessage.stringify(message_data);
+                    return new Response(false, authSuccessMessage.stringify(message_data));
                 }
             }
         }
         AuthFailMessage authFailMessage = new AuthFailMessage();
-        return authFailMessage.stringify(new HashMap<>());
+        return new Response(false, authFailMessage.stringify(new HashMap<>()));
     }
 }

@@ -1,7 +1,9 @@
 package main.receivers;
 
 import main.Main;
-import main.objects.Response;
+import main.objects.Subscriber;
+import main.objects.TCPResponse;
+import main.objects.UDPResponse;
 
 public abstract class Receiver
 {
@@ -21,5 +23,5 @@ public abstract class Receiver
         return data.receivable(this);
     }
 
-    public abstract Response action(Main main, JSONData data);
+    public abstract UDPResponse action(Main main, Subscriber subscriber, JSONData data);
 }

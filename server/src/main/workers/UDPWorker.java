@@ -1,7 +1,8 @@
 package main.workers;
 
 import main.Main;
-import main.objects.Response;
+import main.objects.TCPResponse;
+import main.objects.UDPResponse;
 import main.receivers.HelloReceiver;
 import main.receivers.JSONData;
 import main.receivers.Receiver;
@@ -63,7 +64,7 @@ public class UDPWorker implements Runnable
                 {
                     if(receiver.receivable(data))
                     {
-                        Response response = receiver.action(main, data);
+                        UDPResponse response = receiver.action(main, null, data);
                         byte[] bytes_to_send = response.message.getBytes();
                         DatagramPacket sendPacket = new DatagramPacket(
                                 bytes_to_send,

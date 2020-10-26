@@ -3,8 +3,9 @@ package main.receivers;
 import main.Main;
 import main.messages.AuthFailMessage;
 import main.messages.AuthSuccessMessage;
-import main.objects.Response;
+import main.objects.TCPResponse;
 import main.objects.Subscriber;
+import main.objects.UDPResponse;
 
 import java.util.HashMap;
 
@@ -21,7 +22,7 @@ public class HelloReceiver extends Receiver
     }
 
     @Override
-    public Response action(Main main, JSONData data)
+    public UDPResponse action(Main main, Subscriber nobody, JSONData data)
     {
         Subscriber subscriber = main.getSubscriber(getClientID(data));
 
@@ -40,11 +41,11 @@ public class HelloReceiver extends Receiver
                 AuthSuccessMessage authSuccessMessage = new AuthSuccessMessage();
                 if(authSuccessMessage.sendAble(message_data))
                 {
-                    return new Response(false, authSuccessMessage.stringify(message_data));
+                    return new UDPResponse(authSuccessMessage.stringify(message_data));
                 }
             }
         }
         AuthFailMessage authFailMessage = new AuthFailMessage();
-        return new Response(false, authFailMessage.stringify(new HashMap<>()));
+        return new UDPResponse(authFailMessage.stringify(new HashMap<>()));
     }
 }

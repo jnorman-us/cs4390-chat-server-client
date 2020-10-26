@@ -1,14 +1,14 @@
 package main.objects;
 
-public class Response
+public class TCPResponse extends UDPResponse
 {
     public boolean kick;
-    public String message;
 
-    public Response(boolean kick, String message)
+    public TCPResponse(boolean kick, String message)
     {
+        super(message);
+
         this.kick = kick;
-        this.message = message;
     }
 
     public String toString()

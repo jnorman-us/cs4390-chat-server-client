@@ -46,7 +46,7 @@ public class Main
     {
         if(tcp_workers.containsKey(subscriber.clientID))
         {
-            tcp_workers.get(subscriber.clientID).stop();
+            stopTCPWorker(subscriber);
         }
 
         try {
@@ -57,6 +57,11 @@ public class Main
             return false;
         }
         return true;
+    }
+
+    public TCPWorker getTCPWorker(Subscriber subscriber)
+    {
+        return tcp_workers.get(subscriber);
     }
 
     public void stopTCPWorker(Subscriber subscriber)

@@ -10,4 +10,10 @@ public class Response
         this.kick = kick;
         this.message = message;
     }
+
+    public String toString()
+    {
+        return "Kicking: " + kick + "\n"
+                + "Message: " + message;
+    }
 }

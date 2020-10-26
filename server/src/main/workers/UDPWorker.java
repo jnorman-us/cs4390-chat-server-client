@@ -10,20 +10,38 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class UDPWorker implements Runnable
 {
+    private static Receiver[] receivers = new Receiver[] { new HelloReceiver() };
     // UDP server instance
     private Main main;
 
+    private Thread thread;
+    private AtomicBoolean running;
+
     private DatagramSocket socket;
-    private Receiver[] receivers;
 
     public UDPWorker(Main main, int port) throws IOException
     {
         this.main = main;
         socket = new DatagramSocket(port);
-        receivers = new Receiver[]{ new HelloReceiver() };
+
+        thread = new Thread(this);
+        running = new AtomicBoolean(false);
+    }
+
+    public void start()
+    {
+        running.set(true);
+        thread.start();
+    }
+
+    public void stop()
+    {
+        running.set(false);
+        socket.close();
     }
 
     @Override
@@ -32,7 +50,7 @@ public class UDPWorker implements Runnable
         byte[] received = new byte[65535];
         DatagramPacket datagramPacket = null;
 
-        while(true)
+        while(running.get())
         {
             datagramPacket = new DatagramPacket(received, received.length);
             try {

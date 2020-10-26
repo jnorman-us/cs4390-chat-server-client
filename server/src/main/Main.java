@@ -39,8 +39,7 @@ public class Main
             System.exit(0);
         }
 
-        Thread udp_thread = new Thread(udp_worker);
-        udp_thread.start();
+        udp_worker.start();
     }
 
     public boolean createTCPWorker(Subscriber subscriber)
@@ -58,6 +57,15 @@ public class Main
             return false;
         }
         return true;
+    }
+
+    public void stopTCPWorker(Subscriber subscriber)
+    {
+        if(tcp_workers.containsKey((subscriber.clientID)))
+        {
+            tcp_workers.get(subscriber.clientID).stop();
+            tcp_workers.remove(subscriber.clientID);
+        }
     }
 
     public Subscriber getSubscriber(String clientID)

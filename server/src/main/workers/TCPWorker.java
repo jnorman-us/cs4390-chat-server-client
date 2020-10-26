@@ -1,24 +1,32 @@
 package main.workers;
 
 import main.Main;
+import main.objects.Response;
 import main.objects.Subscriber;
+import main.receivers.ConnectReceiver;
+import main.receivers.JSONData;
+import main.receivers.Receiver;
 
-import java.io.DataInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class TCPWorker implements Runnable
 {
+    private static Receiver[] receivers = new Receiver[]{ new ConnectReceiver() };
+
     private Main main;
     private Subscriber subscriber;
 
     private Thread thread;
+    private AtomicBoolean running;
+
     private ServerSocket serverSocket;
     private Socket socket;
-    private DataInputStream in;
-    private AtomicBoolean running;
 
     public TCPWorker(Main main, Subscriber subscriber) throws IOException
     {
@@ -28,12 +36,13 @@ public class TCPWorker implements Runnable
         if(subscriber.port < 0)
             throw new IOException();
         serverSocket = new ServerSocket(subscriber.port);
+
+        thread = new Thread(this);
         running = new AtomicBoolean(false);
     }
 
     public void start()
     {
-        thread = new Thread(this);
         running.set(true);
         thread.start();
     }
@@ -42,6 +51,7 @@ public class TCPWorker implements Runnable
     {
         running.set(false);
         try {
+            System.out.println("Closing the socket");
             serverSocket.close();
         } catch(IOException exception) {
             System.out.println("Failed to close TCP server on " + serverSocket.getLocalPort());
@@ -55,20 +65,35 @@ public class TCPWorker implements Runnable
 
         try {
             socket = serverSocket.accept();
-            System.out.println("accepted");
-            //in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-            String line = "";
+            InputStream input = socket.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+            String parsed = "";
+
             while(running.get())
             {
-                //System.out.println(in.readUTF());
+                parsed = reader.readLine();
+                if(parsed != null)
+                {
+                    JSONData data = new JSONData(parsed);
 
-                if(socket.isClosed())
-                    break;
+                    for(Receiver receiver : receivers)
+                    {
+                        if(receiver.receivable(data))
+                        {
+                            Response response = receiver.action(main, data);
+
+                            System.out.println(response);
+                        }
+                    }
+                }
+                else main.stopTCPWorker(subscriber);
             }
+
+
         } catch(IOException exception) {
             System.out.println("TCP server on " + serverSocket.getLocalPort() + " experienced IO exception");
         }
 
-        System.out.println("Stopping the TCP server on " + serverSocket.getLocalPort());
+        System.out.println("Stopping the TCP server2 on " + serverSocket.getLocalPort());
     }
 }

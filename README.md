@@ -59,3 +59,25 @@ The packet that is sent via UDP from the server to the client because it failed 
 		"receiver": "AUTH-FAIL"
 	}
 ---
+### Connect Packet
+The packet that is sent via TCP from client to server to authenticate the client and authorize further communication over TCP.
+| **Key** | **Type** | **Example Value** | **Description** |
+|--|--|--|--|
+| `RAND-COOKIE` | String | `gRx57aF!eE4?` | A completely random string that the client uses to authenitcate itself |
+
+#### Example Packet:
+	{
+		"receiver": "CONNECT",
+		"RAND-COOKIE": "gRx57aF!eE4?"
+	}
+---
+### Connected Packet
+The packet that is sent via TCP from the server to the client in order to verify that the client was authorized.
+| **Key** | **Type** | **Example Value** | **Description** |
+|--|--|--|--|
+
+#### Example Packet:
+	{
+		"receiver": "CONNECTED"
+	}
+---

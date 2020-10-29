@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8551b8d2-e941-4668-a667-d38cd70aeb77" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\Users\austin\Documents\School\UTD_schoolwork\junior_fall\cs_4390_networks\project\client\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1jL2TH9xLBjCUb7YTPIqDVqG3n3" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="main.workers" />
+      <recent name="main.objects" />
+      <recent name="main.messages" />
+      <recent name="main.receivers" />
+      <recent name="receivers" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\austin\Documents\School\UTD_schoolwork\junior_fall\cs_4390_networks\project\client\src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <module name="client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="client" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8551b8d2-e941-4668-a667-d38cd70aeb77" name="Default Changelist" comment="" />
+      <created>1603569057543</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603569057543</updated>
+    </task>
+    <task id="LOCAL-00001" summary="first commit: client prototype. no authentication, no encryption.">
+      <created>1603880011595</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1603880011595</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit: client prototype. no authentication, no encryption." />
+    <option name="LAST_COMMIT_MESSAGE" value="first commit: client prototype. no authentication, no encryption." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1125" y="531" key="#Project_Structure" timestamp="1603569074264">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state x="1125" y="531" key="#Project_Structure/0.0.3072.1688@0.0.3072.1688" timestamp="1603569074264" />
+    <state x="574" y="567" key="#com.intellij.ide.util.MemberChooser" timestamp="1603877472849">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state x="574" y="567" key="#com.intellij.ide.util.MemberChooser/0.0.3072.1688@0.0.3072.1688" timestamp="1603877472849" />
+    <state x="446" y="544" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603871303347">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state x="446" y="544" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.3072.1688@0.0.3072.1688" timestamp="1603871303347" />
+    <state x="485" y="132" key="CommitChangelistDialog2" timestamp="1603880010385">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state x="485" y="132" key="CommitChangelistDialog2/0.0.3072.1688@0.0.3072.1688" timestamp="1603880010385" />
+    <state x="496" y="552" key="FileChooserDialogImpl" timestamp="1603785727028">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state x="496" y="552" key="FileChooserDialogImpl/0.0.3072.1688@0.0.3072.1688" timestamp="1603785727028" />
+    <state width="1370" height="511" key="GridCell.Tab.0.bottom" timestamp="1603881086916">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1370" height="511" key="GridCell.Tab.0.bottom/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086916" />
+    <state width="1370" height="511" key="GridCell.Tab.0.center" timestamp="1603881086916">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1370" height="511" key="GridCell.Tab.0.center/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086916" />
+    <state width="1370" height="511" key="GridCell.Tab.0.left" timestamp="1603881086915">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1370" height="511" key="GridCell.Tab.0.left/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086915" />
+    <state width="1370" height="511" key="GridCell.Tab.0.right" timestamp="1603881086916">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1370" height="511" key="GridCell.Tab.0.right/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086916" />
+    <state width="1370" height="511" key="GridCell.Tab.1.bottom" timestamp="1603881086917">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1370" height="511" key="GridCell.Tab.1.bottom/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086917" />
+    <state width="1370" height="511" key="GridCell.Tab.1.center" timestamp="1603881086917">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1370" height="511" key="GridCell.Tab.1.center/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086917" />
+    <state width="1370" height="511" key="GridCell.Tab.1.left" timestamp="1603881086916">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1370" height="511" key="GridCell.Tab.1.left/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086916" />
+    <state width="1370" height="511" key="GridCell.Tab.1.right" timestamp="1603881086917">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state width="1370" height="511" key="GridCell.Tab.1.right/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086917" />
+    <state x="196" y="371" key="SettingsEditor" timestamp="1603768283680">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state x="196" y="371" key="SettingsEditor/0.0.3072.1688@0.0.3072.1688" timestamp="1603768283680" />
+    <state x="439" y="518" key="Vcs.Push.Dialog.v2" timestamp="1603880137461">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state x="439" y="518" key="Vcs.Push.Dialog.v2/0.0.3072.1688@0.0.3072.1688" timestamp="1603880137461" />
+    <state x="444" y="722" key="git4idea.rebase.GitRebaseDialog" timestamp="1603879139952">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state x="444" y="722" key="git4idea.rebase.GitRebaseDialog/0.0.3072.1688@0.0.3072.1688" timestamp="1603879139952" />
+    <state x="464" y="381" key="run.anything.popup" timestamp="1603777627574">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state x="464" y="381" key="run.anything.popup/0.0.3072.1688@0.0.3072.1688" timestamp="1603777627574" />
+    <state x="470" y="401" width="672" height="678" key="search.everywhere.popup" timestamp="1603777033777">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state x="470" y="401" width="672" height="678" key="search.everywhere.popup/0.0.3072.1688@0.0.3072.1688" timestamp="1603777033777" />
+  </component>
+</project>

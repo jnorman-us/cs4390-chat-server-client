@@ -1,12 +1,10 @@
 package main.workers;
 
 import main.Main;
+import main.messages.Message;
 import main.objects.TCPResponse;
 import main.objects.Subscriber;
-import main.receivers.ConnectReceiver;
-import main.receivers.JSONData;
-import main.receivers.Receiver;
-import main.receivers.ShoutReceiver;
+import main.receivers.*;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -17,7 +15,8 @@ public class TCPWorker implements Runnable
 {
     private static Receiver[] receivers = new Receiver[]{
             new ConnectReceiver(),
-            new ShoutReceiver()
+            new ShoutReceiver(),
+            new ChatRequestReceiver()
     };
 
     private Main main;
@@ -25,7 +24,6 @@ public class TCPWorker implements Runnable
 
     private Thread thread;
     private AtomicBoolean running;
-    private AtomicBoolean accepted;
 
     private ServerSocket serverSocket;
     private Socket socket;
@@ -42,25 +40,23 @@ public class TCPWorker implements Runnable
 
         thread = new Thread(this);
         running = new AtomicBoolean(false);
-        accepted = new AtomicBoolean(false);
     }
 
     public void start()
     {
         running.set(true);
-        accepted.set(false);
         thread.start();
     }
 
     public void stop()
     {
         running.set(false);
-        accepted.set(false);
         try {
             System.out.println("Closing the socket");
             serverSocket.close();
-            if(isAccepted())
+            if(socket != null && socket.isConnected())
                 socket.close();
+            subscriber.disconnect();
         } catch(IOException exception) {
             System.out.println("Failed to close TCP server on " + serverSocket.getLocalPort());
         }
@@ -79,7 +75,6 @@ public class TCPWorker implements Runnable
 
         try {
             socket = serverSocket.accept();
-            accepted.set(true);
 
             InputStream input = socket.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
@@ -90,7 +85,9 @@ public class TCPWorker implements Runnable
 
             while(running.get())
             {
+                System.out.println(parsed);
                 parsed = reader.readLine();
+                System.out.println(parsed);
                 if(parsed != null)
                 {
                     JSONData data = new JSONData(parsed);
@@ -119,14 +116,10 @@ public class TCPWorker implements Runnable
         System.out.println("Stopping the TCP server2 on " + serverSocket.getLocalPort());
     }
 
-    public boolean send(String message)
+    public void send(String message)
     {
-        if(accepted.get())
-        {
+        if(socket != null && socket.isConnected())
             writer.println(message);
-            return true;
-        }
-        return false;
     }
 
     public boolean isRunning()
@@ -134,8 +127,8 @@ public class TCPWorker implements Runnable
         return running.get();
     }
 
-    public boolean isAccepted()
+    public String toString()
     {
-        return accepted.get();
+        return (isRunning() ? "Active" : "Inactive") + "Worker belonging to: " + subscriber.toString() + " on port " + subscriber.port;
     }
 }

@@ -61,7 +61,7 @@ public class UDPWorker implements Runnable
                     //send the HELLO message
                     String s = helloMessage.stringify(message_data);
                     buf = s.getBytes();
-                    InetAddress address = InetAddress.getByName("antimatter"); //computer hostname
+                    InetAddress address = InetAddress.getLocalHost(); //computer hostname
                     datagramPacket = new DatagramPacket(buf, buf.length, address, 8000);
                     System.out.println("created UDP packet w/ buffer size: " + buf.length + " address: " + address + " port: " + 8000);
                     socket.send(datagramPacket);

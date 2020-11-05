@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="8551b8d2-e941-4668-a667-d38cd70aeb77" name="Default Changelist" comment="" />
+    <list default="true" id="8551b8d2-e941-4668-a667-d38cd70aeb77" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../server/.idea/libraries/json_simple_1_1__3_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/main/objects/Channel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/main/objects/Chat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../server/server.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,27 +38,22 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IgnoredFileRootStore">
-    <option name="generatedRoots">
-      <set>
-        <option value="C:\Users\austin\Documents\School\UTD_schoolwork\junior_fall\cs_4390_networks\project\client\.idea" />
-      </set>
-    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1jL2TH9xLBjCUb7YTPIqDVqG3n3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../server" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -80,6 +98,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -90,6 +109,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1603569057543</updated>
+      <workItem from="1603938867548" duration="330000" />
+      <workItem from="1603939531593" duration="1008000" />
+      <workItem from="1603940552377" duration="9000" />
+      <workItem from="1603940609692" duration="823000" />
+      <workItem from="1604539320740" duration="726000" />
     </task>
     <task id="LOCAL-00001" summary="first commit: client prototype. no authentication, no encryption.">
       <created>1603880011595</created>
@@ -101,18 +125,20 @@
     <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit: client prototype. no authentication, no encryption." />
@@ -135,25 +161,34 @@
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
     <state x="485" y="132" key="CommitChangelistDialog2/0.0.3072.1688@0.0.3072.1688" timestamp="1603880010385" />
-    <state x="496" y="552" key="FileChooserDialogImpl" timestamp="1603785727028">
-      <screen x="0" y="0" width="3072" height="1688" />
+    <state x="310" y="340" key="FileChooserDialogImpl" timestamp="1604539327953">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="310" y="340" key="FileChooserDialogImpl/-1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1604539327953" />
     <state x="496" y="552" key="FileChooserDialogImpl/0.0.3072.1688@0.0.3072.1688" timestamp="1603785727028" />
-    <state width="1370" height="511" key="GridCell.Tab.0.bottom" timestamp="1603881086916">
-      <screen x="0" y="0" width="3072" height="1688" />
+    <state width="642" height="329" key="GridCell.Tab.0.bottom" timestamp="1603941433138">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1342" height="266" key="GridCell.Tab.0.bottom/-1920.0.1536.832/0.0.1920.1040@-1920.0.1536.832" timestamp="1603939198313" />
+    <state width="642" height="329" key="GridCell.Tab.0.bottom/-1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1603941433138" />
     <state width="1370" height="511" key="GridCell.Tab.0.bottom/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086916" />
-    <state width="1370" height="511" key="GridCell.Tab.0.center" timestamp="1603881086916">
-      <screen x="0" y="0" width="3072" height="1688" />
+    <state width="642" height="329" key="GridCell.Tab.0.center" timestamp="1603941433138">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1342" height="266" key="GridCell.Tab.0.center/-1920.0.1536.832/0.0.1920.1040@-1920.0.1536.832" timestamp="1603939198312" />
+    <state width="642" height="329" key="GridCell.Tab.0.center/-1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1603941433138" />
     <state width="1370" height="511" key="GridCell.Tab.0.center/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086916" />
-    <state width="1370" height="511" key="GridCell.Tab.0.left" timestamp="1603881086915">
-      <screen x="0" y="0" width="3072" height="1688" />
+    <state width="642" height="329" key="GridCell.Tab.0.left" timestamp="1603941433138">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1342" height="266" key="GridCell.Tab.0.left/-1920.0.1536.832/0.0.1920.1040@-1920.0.1536.832" timestamp="1603939198312" />
+    <state width="642" height="329" key="GridCell.Tab.0.left/-1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1603941433138" />
     <state width="1370" height="511" key="GridCell.Tab.0.left/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086915" />
-    <state width="1370" height="511" key="GridCell.Tab.0.right" timestamp="1603881086916">
-      <screen x="0" y="0" width="3072" height="1688" />
+    <state width="642" height="329" key="GridCell.Tab.0.right" timestamp="1603941433138">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1342" height="266" key="GridCell.Tab.0.right/-1920.0.1536.832/0.0.1920.1040@-1920.0.1536.832" timestamp="1603939198312" />
+    <state width="642" height="329" key="GridCell.Tab.0.right/-1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1603941433138" />
     <state width="1370" height="511" key="GridCell.Tab.0.right/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086916" />
     <state width="1370" height="511" key="GridCell.Tab.1.bottom" timestamp="1603881086917">
       <screen x="0" y="0" width="3072" height="1688" />
@@ -171,9 +206,10 @@
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
     <state width="1370" height="511" key="GridCell.Tab.1.right/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086917" />
-    <state x="196" y="371" key="SettingsEditor" timestamp="1603768283680">
-      <screen x="0" y="0" width="3072" height="1688" />
+    <state x="256" y="36" key="SettingsEditor" timestamp="1603939917215">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="256" y="36" key="SettingsEditor/-1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1603939917215" />
     <state x="196" y="371" key="SettingsEditor/0.0.3072.1688@0.0.3072.1688" timestamp="1603768283680" />
     <state x="439" y="518" key="Vcs.Push.Dialog.v2" timestamp="1603880137461">
       <screen x="0" y="0" width="3072" height="1688" />

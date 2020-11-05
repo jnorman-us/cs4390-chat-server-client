@@ -19,11 +19,11 @@ public class TCPWorker {
 
     public void run() {
         try {
-            String hostName = "antimatter";
+            String hostName = "DESKTOP-S0BQ2LM";
             //int portNumber = Integer.parseInt(getPort(data));
 
             //Attempt to start TCP connection, in the future maybe contact TCPWorker in order to start communication
-            Socket TCPSocket = new Socket(hostName, PORTNUM);
+            Socket TCPSocket = new Socket("127.0.0.1", PORTNUM);
             PrintWriter out = new PrintWriter(TCPSocket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(TCPSocket.getInputStream()));
 

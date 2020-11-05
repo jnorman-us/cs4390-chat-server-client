@@ -11,6 +11,8 @@ public class Subscriber
     public String rand_cookie;
     public int port;
 
+    // connected means if the socket was properly accepted AND
+    // the client had the proper RAND-COOKIE
     private AtomicBoolean connected;
 
     public Subscriber(String id)
@@ -60,4 +62,13 @@ public class Subscriber
         return connected.get();
     }
 
+    public boolean equals(Subscriber other)
+    {
+        return clientID.equals(other.clientID);
+    }
+
+    public String toString()
+    {
+        return clientID + ": <connected, " + connected + ">";
+    }
 }

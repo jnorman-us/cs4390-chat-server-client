@@ -23,6 +23,7 @@ public class UDPWorker implements Runnable
     private DatagramSocket socket;
     private String rand_cookie_to_return;
     private String port_number_to_return;
+    private InetAddress serverIP;
 
     public UDPWorker(int port) throws IOException
     {
@@ -34,6 +35,10 @@ public class UDPWorker implements Runnable
     public String getPort_number_to_return() {
         return port_number_to_return;
     }
+    public InetAddress getServerIP() {
+        return serverIP;
+    }
+
 
     /*
      * Sends HELLO message to server, receives and processes server response
@@ -45,12 +50,22 @@ public class UDPWorker implements Runnable
         boolean loginSuccessful = false;
         while(!loginSuccessful) {
             try {
+                //DECLARE & INITIALIZE VARIABLES
                 //DatagramSocket socket = new DatagramSocket();
                 Scanner scan = new Scanner(System.in);
                 DatagramPacket datagramPacket = null;
                 byte[] buf = new byte[65535];
+                String defaultServerIPString = InetAddress.getLocalHost().toString();   //IP address of the server if server and client running on same machine
+                defaultServerIPString = defaultServerIPString.substring(defaultServerIPString.indexOf('/') + 1);
+
+
+                System.out.print("\nIf client and server are running on the same machine, server IP address is " + defaultServerIPString + "\nWhat is the IP address of the server?: " );
+                defaultServerIPString = scan.next();
+                serverIP = InetAddress.getByName(defaultServerIPString);
+
                 System.out.print("What is your client ID? i.e. austin-li: ");
-                String clientID = scan.next(); //ask the user for their clientID
+                String clientID = scan.next();                                  //get clientID from the user
+
 
                 HashMap<String, String> message_data = new HashMap<>(); //hashmap message_data stores the JSON message
                 message_data.put("CLIENT-ID-A", "" + clientID);
@@ -61,9 +76,9 @@ public class UDPWorker implements Runnable
                     //send the HELLO message
                     String s = helloMessage.stringify(message_data);
                     buf = s.getBytes();
-                    InetAddress address = InetAddress.getByName("antimatter"); //computer hostname
-                    datagramPacket = new DatagramPacket(buf, buf.length, address, 8000);
-                    System.out.println("created UDP packet w/ buffer size: " + buf.length + " address: " + address + " port: " + 8000);
+                    //InetAddress address = InetAddress.getByName("antimatter"); //computer hostname
+                    datagramPacket = new DatagramPacket(buf, buf.length, serverIP, 8000);
+                    System.out.println("created UDP packet w/ buffer size: " + buf.length + ", address: " + serverIP + ", port: " + 8000);
                     socket.send(datagramPacket);
 
                 /*
@@ -81,7 +96,7 @@ public class UDPWorker implements Runnable
                     System.out.println("HELLO packet is not formatted correctly");
                 }
             } catch (IOException e) {
-                System.out.println("Something went wrong with sending HELLO packet");
+                System.out.println("Something went wrong with login and/or sending HELLO packet. Please ensure the IP address is correct");
             }
 
             //receive AUTH packet

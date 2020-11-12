@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8551b8d2-e941-4668-a667-d38cd70aeb77" name="Default Changelist" comment="" />
+    <list default="true" id="8551b8d2-e941-4668-a667-d38cd70aeb77" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/main/objects/Subscriber.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/main/objects/Subscriber.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/main/workers/TCPWorker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/main/workers/TCPWorker.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,7 +19,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IgnoredFileRootStore">
     <option name="generatedRoots">
@@ -119,6 +123,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="first commit: client prototype. no authentication, no encryption." />
   </component>
   <component name="WindowStateProjectService">
+    <state x="372" y="444" key="#Notifications" timestamp="1605080593342">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state x="372" y="444" key="#Notifications/0.0.3072.1688@0.0.3072.1688" timestamp="1605080593342" />
     <state x="1125" y="531" key="#Project_Structure" timestamp="1603569074264">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
@@ -139,22 +147,22 @@
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
     <state x="496" y="552" key="FileChooserDialogImpl/0.0.3072.1688@0.0.3072.1688" timestamp="1603785727028" />
-    <state width="1370" height="511" key="GridCell.Tab.0.bottom" timestamp="1603881086916">
+    <state width="1770" height="415" key="GridCell.Tab.0.bottom" timestamp="1605088555064">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state width="1370" height="511" key="GridCell.Tab.0.bottom/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086916" />
-    <state width="1370" height="511" key="GridCell.Tab.0.center" timestamp="1603881086916">
+    <state width="1770" height="415" key="GridCell.Tab.0.bottom/0.0.3072.1688@0.0.3072.1688" timestamp="1605088555064" />
+    <state width="1770" height="415" key="GridCell.Tab.0.center" timestamp="1605088555064">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state width="1370" height="511" key="GridCell.Tab.0.center/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086916" />
-    <state width="1370" height="511" key="GridCell.Tab.0.left" timestamp="1603881086915">
+    <state width="1770" height="415" key="GridCell.Tab.0.center/0.0.3072.1688@0.0.3072.1688" timestamp="1605088555064" />
+    <state width="1770" height="415" key="GridCell.Tab.0.left" timestamp="1605088555063">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state width="1370" height="511" key="GridCell.Tab.0.left/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086915" />
-    <state width="1370" height="511" key="GridCell.Tab.0.right" timestamp="1603881086916">
+    <state width="1770" height="415" key="GridCell.Tab.0.left/0.0.3072.1688@0.0.3072.1688" timestamp="1605088555063" />
+    <state width="1770" height="415" key="GridCell.Tab.0.right" timestamp="1605088555064">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state width="1370" height="511" key="GridCell.Tab.0.right/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086916" />
+    <state width="1770" height="415" key="GridCell.Tab.0.right/0.0.3072.1688@0.0.3072.1688" timestamp="1605088555064" />
     <state width="1370" height="511" key="GridCell.Tab.1.bottom" timestamp="1603881086917">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>

@@ -60,12 +60,13 @@ public class UDPWorker implements Runnable
 
 
                 System.out.print("\nIf client and server are running on the same machine, server IP address is " + defaultServerIPString + "\nWhat is the IP address of the server?: " );
-                defaultServerIPString = scan.next();
+                defaultServerIPString = scan.nextLine();
+                defaultServerIPString.trim();
                 serverIP = InetAddress.getByName(defaultServerIPString);
 
                 System.out.print("What is your client ID? i.e. austin-li: ");
-                String clientID = scan.next();                                  //get clientID from the user
-
+                String clientID = scan.nextLine();                                  //get clientID from the user
+                clientID.trim();
 
                 HashMap<String, String> message_data = new HashMap<>(); //hashmap message_data stores the JSON message
                 message_data.put("CLIENT-ID-A", "" + clientID);
@@ -96,7 +97,7 @@ public class UDPWorker implements Runnable
                     System.out.println("HELLO packet is not formatted correctly");
                 }
             } catch (IOException e) {
-                System.out.println("Something went wrong with login and/or sending HELLO packet. Please ensure the IP address is correct");
+                System.out.println("IP address is invalid, or something went wrong while sending HELLO packet. Please restart, and ensure the IP address is correct");
             }
 
             //receive AUTH packet
@@ -140,41 +141,7 @@ public class UDPWorker implements Runnable
             }
         }
 
-
     }
-
-
-
-/*
-            datagramPacket = new DatagramPacket(received, received.length);
-            try {
-                socket.receive(datagramPacket);
-
-                String parsed = parse(received);
-                JSONData data = new JSONData(parsed);
-
-                for(Receiver receiver : receivers)
-                {
-                    if(receiver.receivable(data))
-                    {
-                        UDPResponse response = receiver.action(main, null, data);
-                        byte[] bytes_to_send = response.message.getBytes();
-                        DatagramPacket sendPacket = new DatagramPacket(
-                                bytes_to_send,
-                                bytes_to_send.length,
-                                datagramPacket.getAddress(),
-                                datagramPacket.getPort()
-                        );
-                        socket.send(sendPacket);
-                    }
-                }
-                Arrays.fill(received, (byte)0);
-            } catch (IOException exception) {
-                System.out.println("IO Exception");
-                break;
-            }
-
- */
 
 
     //parse the received bytes and convert them into a string

@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="8551b8d2-e941-4668-a667-d38cd70aeb77" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../server/out/production/server/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/main/messages/ChatStartedMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/main/messages/ChatStartedMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/main/messages/UnreachableMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/main/messages/UnreachableMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/main/objects/Chat.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/main/objects/Chat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/main/objects/Session.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/main/objects/Session.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/out/production/server/main/objects/Subscriber.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/main/objects/Subscriber.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/main/receivers/ChatRequestReceiver.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/main/receivers/ChatRequestReceiver.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/out/production/server/main/workers/TCPWorker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/main/workers/TCPWorker.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,8 +61,8 @@
       <recent name="C:\Users\austin\Documents\School\UTD_schoolwork\junior_fall\cs_4390_networks\project\client\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main (1)">
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Compound.Run 2 clients">
+    <configuration name="Client A" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="client" />
       <extension name="coverage">
@@ -70,19 +75,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+    <configuration name="Client B" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="client" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main (1)" />
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
+    <configuration name="Run 2 clients" type="CompoundRunConfigurationType">
+      <toRun name="Client B" type="Application" />
+      <toRun name="Client A" type="Application" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="CompoundRunConfigurationType">
+      <toRun name="Client B" type="Application" />
+      <toRun name="Client A" type="Application" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Client B" />
+      <item itemvalue="Application.Client A" />
+      <item itemvalue="Compound.Run 2 clients" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -131,10 +145,18 @@
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
     <state x="1125" y="531" key="#Project_Structure/0.0.3072.1688@0.0.3072.1688" timestamp="1603569074264" />
+    <state x="175" y="318" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605150509256">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state x="175" y="318" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3072.1688@0.0.3072.1688" timestamp="1605150509256" />
     <state x="574" y="567" key="#com.intellij.ide.util.MemberChooser" timestamp="1603877472849">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
     <state x="574" y="567" key="#com.intellij.ide.util.MemberChooser/0.0.3072.1688@0.0.3072.1688" timestamp="1603877472849" />
+    <state x="450" y="447" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1605150447195">
+      <screen x="0" y="0" width="3072" height="1688" />
+    </state>
+    <state x="450" y="447" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.3072.1688@0.0.3072.1688" timestamp="1605150447195" />
     <state x="446" y="544" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603871303347">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
@@ -147,38 +169,38 @@
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
     <state x="496" y="552" key="FileChooserDialogImpl/0.0.3072.1688@0.0.3072.1688" timestamp="1603785727028" />
-    <state width="1770" height="415" key="GridCell.Tab.0.bottom" timestamp="1605088555064">
+    <state width="1444" height="420" key="GridCell.Tab.0.bottom" timestamp="1605324347185">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state width="1770" height="415" key="GridCell.Tab.0.bottom/0.0.3072.1688@0.0.3072.1688" timestamp="1605088555064" />
-    <state width="1770" height="415" key="GridCell.Tab.0.center" timestamp="1605088555064">
+    <state width="1444" height="420" key="GridCell.Tab.0.bottom/0.0.3072.1688@0.0.3072.1688" timestamp="1605324347185" />
+    <state width="1444" height="420" key="GridCell.Tab.0.center" timestamp="1605324347185">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state width="1770" height="415" key="GridCell.Tab.0.center/0.0.3072.1688@0.0.3072.1688" timestamp="1605088555064" />
-    <state width="1770" height="415" key="GridCell.Tab.0.left" timestamp="1605088555063">
+    <state width="1444" height="420" key="GridCell.Tab.0.center/0.0.3072.1688@0.0.3072.1688" timestamp="1605324347185" />
+    <state width="1444" height="420" key="GridCell.Tab.0.left" timestamp="1605324347184">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state width="1770" height="415" key="GridCell.Tab.0.left/0.0.3072.1688@0.0.3072.1688" timestamp="1605088555063" />
-    <state width="1770" height="415" key="GridCell.Tab.0.right" timestamp="1605088555064">
+    <state width="1444" height="420" key="GridCell.Tab.0.left/0.0.3072.1688@0.0.3072.1688" timestamp="1605324347184" />
+    <state width="1444" height="420" key="GridCell.Tab.0.right" timestamp="1605324347185">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state width="1770" height="415" key="GridCell.Tab.0.right/0.0.3072.1688@0.0.3072.1688" timestamp="1605088555064" />
-    <state width="1370" height="511" key="GridCell.Tab.1.bottom" timestamp="1603881086917">
+    <state width="1444" height="420" key="GridCell.Tab.0.right/0.0.3072.1688@0.0.3072.1688" timestamp="1605324347185" />
+    <state width="1361" height="518" key="GridCell.Tab.1.bottom" timestamp="1605170663087">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state width="1370" height="511" key="GridCell.Tab.1.bottom/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086917" />
-    <state width="1370" height="511" key="GridCell.Tab.1.center" timestamp="1603881086917">
+    <state width="1361" height="518" key="GridCell.Tab.1.bottom/0.0.3072.1688@0.0.3072.1688" timestamp="1605170663087" />
+    <state width="1361" height="518" key="GridCell.Tab.1.center" timestamp="1605170663086">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state width="1370" height="511" key="GridCell.Tab.1.center/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086917" />
-    <state width="1370" height="511" key="GridCell.Tab.1.left" timestamp="1603881086916">
+    <state width="1361" height="518" key="GridCell.Tab.1.center/0.0.3072.1688@0.0.3072.1688" timestamp="1605170663086" />
+    <state width="1361" height="518" key="GridCell.Tab.1.left" timestamp="1605170663086">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state width="1370" height="511" key="GridCell.Tab.1.left/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086916" />
-    <state width="1370" height="511" key="GridCell.Tab.1.right" timestamp="1603881086917">
+    <state width="1361" height="518" key="GridCell.Tab.1.left/0.0.3072.1688@0.0.3072.1688" timestamp="1605170663086" />
+    <state width="1361" height="518" key="GridCell.Tab.1.right" timestamp="1605170663087">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state width="1370" height="511" key="GridCell.Tab.1.right/0.0.3072.1688@0.0.3072.1688" timestamp="1603881086917" />
+    <state width="1361" height="518" key="GridCell.Tab.1.right/0.0.3072.1688@0.0.3072.1688" timestamp="1605170663086" />
     <state x="196" y="371" key="SettingsEditor" timestamp="1603768283680">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
@@ -191,13 +213,13 @@
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
     <state x="444" y="722" key="git4idea.rebase.GitRebaseDialog/0.0.3072.1688@0.0.3072.1688" timestamp="1603879139952" />
-    <state x="464" y="381" key="run.anything.popup" timestamp="1603777627574">
+    <state x="464" y="381" key="run.anything.popup" timestamp="1605139831515">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state x="464" y="381" key="run.anything.popup/0.0.3072.1688@0.0.3072.1688" timestamp="1603777627574" />
-    <state x="470" y="401" width="672" height="678" key="search.everywhere.popup" timestamp="1603777033777">
+    <state x="464" y="381" key="run.anything.popup/0.0.3072.1688@0.0.3072.1688" timestamp="1605139831515" />
+    <state x="470" y="401" width="672" height="678" key="search.everywhere.popup" timestamp="1605320157282">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
-    <state x="470" y="401" width="672" height="678" key="search.everywhere.popup/0.0.3072.1688@0.0.3072.1688" timestamp="1603777033777" />
+    <state x="470" y="401" width="672" height="678" key="search.everywhere.popup/0.0.3072.1688@0.0.3072.1688" timestamp="1605320157282" />
   </component>
 </project>

@@ -1,9 +1,7 @@
 package main.receivers;
 
 import main.Main;
-import main.messages.AuthFailMessage;
-import main.messages.AuthSuccessMessage;
-import main.objects.TCPResponse;
+import main.messages.ChallengeMessage;
 import main.objects.Subscriber;
 import main.objects.UDPResponse;
 
@@ -29,23 +27,17 @@ public class HelloReceiver extends Receiver
         if(subscriber != null)
         {
             subscriber.generateRandomCookie();
-            subscriber.generatePortNumber();
 
-            // attempt to generate a TCP worker for this subscriber
-            if(main.createTCPWorker(subscriber))
+            HashMap<String, String> message_data = new HashMap<>();
+            message_data.put("RAND", subscriber.randomCookie);
+
+            ChallengeMessage templateChallengeMessage = new ChallengeMessage();
+            if(templateChallengeMessage.sendAble(message_data))
             {
-                HashMap<String, String> message_data = new HashMap<>();
-                message_data.put("RAND-COOKIE", subscriber.rand_cookie);
-                message_data.put("PORT-NUMBER", "" + subscriber.port);
-
-                AuthSuccessMessage authSuccessMessage = new AuthSuccessMessage();
-                if(authSuccessMessage.sendAble(message_data))
-                {
-                    return new UDPResponse(authSuccessMessage.stringify(message_data));
-                }
+                return new UDPResponse(templateChallengeMessage.stringify(message_data));
             }
+            return new UDPResponse("Failed to send");
         }
-        AuthFailMessage authFailMessage = new AuthFailMessage();
-        return new UDPResponse(authFailMessage.stringify(new HashMap<>()));
+        return new UDPResponse("NOT A REGISTERED SUBSCRIBER");
     }
 }

@@ -18,10 +18,10 @@ public class Main
         Main main = new Main();
 
         // hard encoded, but maybe we will have a text file to import these?
-        main.subscribers.put("austin-li", new Subscriber("austin-li"));
-        main.subscribers.put("joseph-norman", new Subscriber("joseph-norman"));
-        main.subscribers.put("josh-guzman", new Subscriber("josh-guzman"));
-        main.subscribers.put("kevin-salinda", new Subscriber("kevin-salinda"));
+        main.subscribers.put("austin-li", new Subscriber("austin-li", "yo123"));
+        main.subscribers.put("joseph-norman", new Subscriber("joseph-norman", "toe123"));
+        main.subscribers.put("josh-guzman", new Subscriber("josh-guzman", "bro123"));
+        main.subscribers.put("kevin-salinda", new Subscriber("kevin-salinda", "moe123"));
 
         Scanner reader = new Scanner(System.in);
 

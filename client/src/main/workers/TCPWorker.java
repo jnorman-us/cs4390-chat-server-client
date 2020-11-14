@@ -1,10 +1,7 @@
 package main.workers;
 
 import main.objects.TCPResponse;
-import main.receivers.ChatStartedReceiver;
-import main.receivers.ConnectResponseReceiver;
-import main.receivers.JSONData;
-import main.receivers.Receiver;
+import main.receivers.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,16 +12,18 @@ import java.net.Socket;
 
 public class TCPWorker {
 
-    int randCookie;
+    String randCookie;
     int portNum;
     InetAddress serverIP;
 
     private Receiver[] receivers = new Receiver[] {
             new ConnectResponseReceiver(),          //parse and respond to connection requests
             new ChatStartedReceiver(),
+            new ChatMessageReceiver(),
+            new UnreachableReceiver()
     };
 
-    public TCPWorker(int rand_cookie, int port_num, InetAddress server_ip) {
+    public TCPWorker(String rand_cookie, int port_num, InetAddress server_ip) {
         randCookie = rand_cookie;
         portNum = port_num;
         serverIP = server_ip;

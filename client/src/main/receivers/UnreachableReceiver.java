@@ -16,7 +16,7 @@ public class UnreachableReceiver extends Receiver {
         return data.data.get("CLIENT-ID-B");
     }
     public TCPResponse action(Main main, Subscriber subscriber, JSONData data) {
-        System.out.println("CLIENT " + getClientID(data) + "is UNREACHABLE");
+        System.out.println("CLIENT " + getClientID(data) + " is UNREACHABLE");
         System.out.println("To INITIATE a connection to another client, enter Chat <client-id>");
         return null;
     }

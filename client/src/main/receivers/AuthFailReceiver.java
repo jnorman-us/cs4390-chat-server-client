@@ -10,7 +10,7 @@ public class AuthFailReceiver extends Receiver {
     }
     public UDPResponse action(Main main, Subscriber nobody, JSONData data) {
         System.out.println("AUTHENTICATION FAILED");
-        return null;
+        return new UDPResponse("");
     }
 
 }

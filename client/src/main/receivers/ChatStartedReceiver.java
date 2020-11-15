@@ -3,6 +3,7 @@ package main.receivers;
 import main.Main;
 import main.messages.ChatMessage;
 import main.messages.ChatRequestMessage;
+import main.messages.EndRequestMessage;
 import main.objects.Subscriber;
 import main.objects.TCPResponse;
 import main.objects.UDPResponse;
@@ -32,6 +33,14 @@ public class ChatStartedReceiver extends Receiver {
         Scanner scan = new Scanner(System.in);  //take user input for chat message
         String userMessage = scan.nextLine();
 
+        //ACCOUNT FOR END REQUESTS
+        if((userMessage.toLowerCase().trim()).equals("end chat")) {
+            //send EndRequestMessage to server
+            EndRequestMessage endRequestMessage = new EndRequestMessage();
+            HashMap<String, String> message_data = new HashMap<>();
+            message_data.put("END_NOTIF", "");
+            return new TCPResponse(false, endRequestMessage.stringify(message_data));
+        }
         //System.out.println(getClientID(data) + userInput);
 
         //send chat message to other client (via the server)

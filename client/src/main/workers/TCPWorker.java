@@ -17,7 +17,7 @@ public class TCPWorker {
     InetAddress serverIP;
 
     private Receiver[] receivers = new Receiver[] {
-            new ConnectResponseReceiver(),          //parse and respond to connection requests
+            new ConnectedReceiver(),          //parse and respond to connection requests
             new ChatStartedReceiver(),
             new ChatMessageReceiver(),
             new UnreachableReceiver()
@@ -59,13 +59,19 @@ public class TCPWorker {
 
             //send messages back and forth
             String parsed = "";          //string to store parsed JSON from the server that we have parsed into a string
-            boolean connectionActive = true;
+            boolean connectedToServer = true;
+            boolean sendMessageToSelf = false;
 
-            while(connectionActive)
+            while(connectedToServer)
             {
-                System.out.println(parsed);
-                parsed = reader.readLine();
-                System.out.println(parsed);
+                //skip receiving next message from the server if you are sending a message to yourself
+                if(!sendMessageToSelf) {
+                    System.out.println(parsed);
+                    parsed = reader.readLine();
+                    System.out.println(parsed);
+                    sendMessageToSelf = false;
+                }
+
                 if(parsed != null)
                 {
                     JSONData data = new JSONData(parsed);
@@ -79,8 +85,22 @@ public class TCPWorker {
                                 // don't output anything
                                 parsed = "";
                             }
+                            else if(response.toString().contains("CHAT_ENDED")) {
+                                //if receive END_NOTIF message from server, return to "Connected" state. This ends the chat session w/ current client.
+                                //to enter "Connected" state, send a CONNECT message to yourself.
+                                parsed = "{\"receiver\": \"CONNECTED\"}";    //send CONNECTED message to self to return to "Connected" state
+                                sendMessageToSelf = true;
+                            }
+
                             else {
                                 writer.println(response.message);
+
+                                //if user typed "end chat", an EndRequestMessage was sent to the server. If you detect an EndRequestMessage being sent to the server, go back to connected state.
+                                if(response.toString().contains("END_NOTIF")) {
+                                    //to enter "Connected" state, send a CONNECT message to yourself.
+                                    parsed = "{\"receiver\": \"CONNECTED\"}";    //send CONNECTED message to self to return to "Connected" state
+                                    sendMessageToSelf = true;
+                                }
 
                                 if(response.kick)
                                 {

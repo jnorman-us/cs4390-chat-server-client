@@ -8,13 +8,12 @@ import main.objects.TCPResponse;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class ConnectResponseReceiver extends Receiver {
-    public ConnectResponseReceiver()
+public class ConnectedReceiver extends Receiver {
+    public ConnectedReceiver()
     {
         super("CONNECTED", new String[] {});
     }
 
-    public String getMessage(JSONData data) {return null;}
 
     public TCPResponse action(Main main, Subscriber subscriber, JSONData data) {
         Scanner scan = new Scanner(System.in);
@@ -25,7 +24,7 @@ public class ConnectResponseReceiver extends Receiver {
         System.out.println("NOW CONNECTED TO THE SERVER.");
 
         System.out.println("1) To INITIATE a connection to another client, enter Chat <client-id>");
-        System.out.println("2) To LISTEN for a connection instead, enter listen");
+        System.out.println("2) To LISTEN for a connection instead, press enter");
         userInput = scan.nextLine();
 
         //if user submits a chat request, split the string to get the client that the user wants to connect to
@@ -44,7 +43,8 @@ public class ConnectResponseReceiver extends Receiver {
             return new TCPResponse(false, chatRequestMessage.stringify(message_data));
         }
         else {
-            return null;
+            System.out.println("listening...");
+            return new TCPResponse(false, "");
         }
 
     }

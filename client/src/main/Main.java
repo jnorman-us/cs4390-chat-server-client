@@ -33,7 +33,7 @@ public class Main {
             //Get Client-ID from user
             System.out.print("What is your client ID? i.e. austin-li: ");
             clientID = scan.nextLine();
-            clientID.trim();
+            clientID = clientID.trim();
 
             //Get Client Password from user
             System.out.print("What is your password?: ");
@@ -41,22 +41,25 @@ public class Main {
 
             //==========================================
 
-            //Start UDP worker to take care of login
-            UDPWorker udp_worker = new UDPWorker(8000, clientID, clientPW, serverIP);
-            udp_worker.run();
-
-            //once udp_worker finishes running, we can get the RAND-COOKIE and PORT-NUMBER
-            int portNum = Integer.parseInt(udp_worker.getPort_number_to_return());
-            String randCookie = udp_worker.getRand_cookie_to_return();
-            InetAddress serverIP_arg = serverIP;
-            TCPWorker tcp_worker = new TCPWorker(randCookie, portNum, serverIP_arg);
-
-            //run the TCP worker
-            tcp_worker.run();
+                //Start UDP worker to begin authentication phases w/ server
+                UDPWorker udp_worker = new UDPWorker(8000, clientID, clientPW, serverIP);
+                udp_worker.run();
 
 
-            //UDP Worker should return the RAND-COOKIE and PORT-NUMBER so TCPWorker can start connection
-            //start TCPWorker to connect to the server and start chatting.
+                //once udp_worker finishes running, we can get the RAND-COOKIE and PORT-NUMBER
+                int portNum = Integer.parseInt(udp_worker.getPort_number_to_return());
+                String randCookie = udp_worker.getRand_cookie_to_return();
+                InetAddress serverIP_arg = serverIP;
+                TCPWorker tcp_worker = new TCPWorker(randCookie, portNum, serverIP_arg);
+
+                //run the TCP worker
+                tcp_worker.run();
+
+                //UDP Worker should return the RAND-COOKIE and PORT-NUMBER so TCPWorker can start connection
+                //start TCPWorker to connect to the server and start chatting.
+
+                System.out.println("Chat terminated.");
+
 
         } catch(Exception exception) {
             System.out.println("Unknown Error, terminating program");

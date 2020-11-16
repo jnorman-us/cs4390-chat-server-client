@@ -138,6 +138,16 @@ The packet that is sent via TCP from the server to clients A and B that they are
 		"CLIENT-ID-B": "austin-li"
 	}
 ---
+### Chat Message Packet
+The packet that is sent via TCP
+| **Key** | **Type** | **Example Value** | **Description** |
+|--|--|--|--|
+| `CHAT-MESSAGE` | String | `hello` | The chat message sent |
+#### Example Packet:
+	{
+		"CHAT-MESSAGE": "hello"
+	}
+---
 ### Unreachable Packet
 The packet that is sent via TCP from the server to the client to notify client A that client B was unreachable. Either they are not connected or are already in a Session with someone else
 | **Key** | **Type** | **Example Value** | **Description** |

@@ -1,6 +1,9 @@
 package main.objects;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.math.BigInteger;
 
 public class Subscriber
 {
@@ -33,9 +36,28 @@ public class Subscriber
     public boolean checkXRES(String res)
     {
         // run the MD5 algorithm here to calculate XRES
-        //      XRES = MD5(rand, K_A)
+        String XRES = MD5(randomCookie, K_A);
         // then confirm that XRES == res
-        return true;
+        return (XRES.equals(res));
+    }
+
+    public String MD5(String rand, String ka)
+    {
+        String key = rand.concat(ka);
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(key.getBytes());
+            byte[] digest = md.digest();
+            BigInteger no = new BigInteger(1, digest);
+            String ht = no.toString(16);
+            while (ht.length() < 32) {
+                ht = "0" + ht;
+            }
+            return ht;
+        }
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void generateRandomCookie()

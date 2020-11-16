@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class ChatMessageReceiver extends Receiver {
     public ChatMessageReceiver() {
-        super("CHAT", new String[]{"CHAT-MESSAGE"});
+        super("CHAT", new String[]{"SESSION-ID", "CHAT-MESSAGE"});
 
     }
     public String getClientID(JSONData data)

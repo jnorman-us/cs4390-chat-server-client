@@ -13,7 +13,13 @@ public class ChatReceiver extends Receiver
 {
     public ChatReceiver()
     {
-        super("CHAT", new String[] { "CHAT-MESSAGE" });
+        super("CHAT", new String[] { "SESSION-ID", "CHAT-MESSAGE" });
+    }
+
+    // never used, no point
+    public String getSessionID(JSONData data)
+    {
+        return data.data.get("SESSION-ID");
     }
 
     public String getChatMessage(JSONData data)
@@ -25,9 +31,9 @@ public class ChatReceiver extends Receiver
     public UDPResponse action(Main main, Subscriber sender, JSONData data)
     {
         if(!sender.connected())
-            return new TCPResponse(true, "message got?");
+            return new TCPResponse(true, "not connected");
 
-        Session this_session = main.getSession(sender);
+        Session this_session = main.getSession(getSessionID(data));
 
         if(this_session != null) {
             Subscriber receiver = this_session.getOther(sender);
@@ -36,6 +42,7 @@ public class ChatReceiver extends Receiver
 
             //Creating the JSON packet
             HashMap<String, String> their_message_data = new HashMap<>();
+            their_message_data.put("SESSION-ID", this_session.getId());
             their_message_data.put("CHAT-MESSAGE", getChatMessage(data));
 
             ChatMessage chatMessage = new ChatMessage();
@@ -43,10 +50,9 @@ public class ChatReceiver extends Receiver
             their_worker.send(chatMessage.stringify(their_message_data));
 
             // now attempt to send that message to sender
-            return new TCPResponse(false, " ");
+            return new TCPResponse(false, "");
         }
 
-        UnreachableMessage unreachableMessage = new UnreachableMessage();
         return new TCPResponse(false, "message failed to send");
     }
 }

@@ -16,9 +16,11 @@ import java.util.Scanner;
 public class ChatStartedReceiver extends Receiver {
     public ChatStartedReceiver()
     {
-        super("CHAT-STARTED", new String[]{"CLIENT-ID-B"});
+        super("CHAT-STARTED", new String[]{"SESSION-ID", "CLIENT-ID-B"});
 
     }
+
+    public String getSessionID(JSONData data) { return data.data.get("SESSION-ID"); }
     public String getClientID(JSONData data)
     {
         return data.data.get("CLIENT-ID-B");

@@ -34,7 +34,8 @@ public class Main
 
     // keeps track of all of the registered subscribers to this messaging platform
     private HashMap<String, Subscriber> subscribers;
-    private ArrayList<Session> sessions;
+    private HashMap<String, Session> sessions;
+    private int sessionID;
 
     private UDPWorker udp_worker; // one UDP server
     private HashMap<String, TCPWorker> tcp_workers;
@@ -42,7 +43,8 @@ public class Main
     public Main()
     {
         subscribers = new HashMap<>();
-        sessions = new ArrayList<>();
+        sessions = new HashMap<>();
+        sessionID = 0;
 
         try {
             udp_worker = new UDPWorker(this,8000);
@@ -95,15 +97,25 @@ public class Main
         return null;
     }
 
-    public boolean createSession(Session session)
+    public boolean createSession(Subscriber a, Subscriber b)
     {
-        sessions.add(session);
+        String newSessionID = "" + sessionID ++;
+        sessions.put(newSessionID, new Session(newSessionID, a, b));
         return true;
+    }
+
+    public Session getSession(String id)
+    {
+        if(sessions.containsKey(id))
+        {
+            return sessions.get(id);
+        }
+        return null;
     }
 
     public Session getSession(Subscriber subscriber)
     {
-        for(Session session : sessions)
+        for(Session session : sessions.values())
         {
             if(session.hasSubscriber(subscriber))
                 return session;
@@ -111,9 +123,9 @@ public class Main
         return null;
     }
 
-    public void endSession(Subscriber subscriber)
+    public void endSession(String id)
     {
-
+        sessions.remove(id);
     }
 
     // debugging function that prints the entire status of the program
@@ -134,7 +146,7 @@ public class Main
         }
 
         toReturn += "Sessions: --------------\n";
-        for(Session session : sessions)
+        for(Session session : sessions.values())
         {
             toReturn += "\t" + session.toString() + "\n";
         }

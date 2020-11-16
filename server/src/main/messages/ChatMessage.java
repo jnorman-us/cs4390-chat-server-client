@@ -4,6 +4,6 @@ public class ChatMessage extends Message
 {
     public ChatMessage()
     {
-        super("CHAT", new String[] { "CHAT-MESSAGE" });
+        super("CHAT", new String[] { "SESSION-ID", "CHAT-MESSAGE" });
     }
 }

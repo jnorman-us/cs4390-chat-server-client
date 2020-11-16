@@ -22,6 +22,7 @@ public class Subscriber
     public Subscriber(String id, String K_A)
     {
         clientID = id;
+        this.K_A = K_A;
 
         randomCookie = "";
         port = -1;
@@ -38,12 +39,15 @@ public class Subscriber
         // run the MD5 algorithm here to calculate XRES
         String XRES = MD5(randomCookie, K_A);
         // then confirm that XRES == res
+        System.out.println(XRES + " " + res);
         return (XRES.equals(res));
     }
 
     public String MD5(String rand, String ka)
     {
-        String key = rand.concat(ka);
+        String key = rand + " " + ka;
+
+        System.out.println(key);
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(key.getBytes());

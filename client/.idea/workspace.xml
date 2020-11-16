@@ -2,17 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8551b8d2-e941-4668-a667-d38cd70aeb77" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../server/src/main/messages/ChatMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../server/src/main/receivers/ChatReceiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/client/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/client/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/client/main/receivers/AuthReceiver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/client/main/workers/TCPWorker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/client/main/workers/TCPWorker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/client/main/workers/UDPWorker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/client/main/workers/UDPWorker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/server/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/server/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/server/main/objects/Subscriber.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/server/main/objects/Subscriber.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/server/main/receivers/HelloReceiver.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/server/main/receivers/HelloReceiver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/server/main/workers/TCPWorker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/server/main/workers/TCPWorker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/server/main/workers/UDPWorker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/server/main/workers/UDPWorker.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/main/messages/EndNotifMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/src/main/receivers/EndRequestReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/main/messages/ChatStartedMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/main/messages/ChatStartedMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/main/objects/Session.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/main/objects/Session.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/main/objects/Subscriber.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/main/objects/Subscriber.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/main/receivers/ChatRequestReceiver.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/main/receivers/ChatRequestReceiver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/main/receivers/ResponseReceiver.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/main/receivers/ResponseReceiver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/out/production/server/main/workers/TCPWorker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../server/out/production/server/main/workers/TCPWorker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/main/messages/ChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/main/messages/ChatMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/main/messages/ChatStartedMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/main/messages/ChatStartedMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/main/objects/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/main/objects/Chat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/main/objects/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/main/objects/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/main/objects/Subscriber.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/main/objects/Subscriber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/main/receivers/ChatReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/main/receivers/ChatReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/main/receivers/ChatRequestReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/main/receivers/ChatRequestReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/src/main/receivers/ShoutReceiver.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/src/main/workers/TCPWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/main/workers/TCPWorker.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,14 +45,22 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -80,6 +95,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Run 2 clients" type="CompoundRunConfigurationType">
       <toRun name="Client B" type="Application" />
       <toRun name="Client A" type="Application" />
@@ -108,6 +134,7 @@
       <option name="presentableId" value="Default" />
       <updated>1603569057543</updated>
       <workItem from="1605496270500" duration="1464000" />
+      <workItem from="1605565948287" duration="1428000" />
     </task>
     <task id="LOCAL-00001" summary="first commit: client prototype. no authentication, no encryption.">
       <created>1603880011595</created>
@@ -175,26 +202,30 @@
       <screen x="0" y="0" width="3072" height="1688" />
     </state>
     <state x="496" y="552" key="FileChooserDialogImpl/0.0.3072.1688@0.0.3072.1688" timestamp="1603785727028" />
-    <state width="914" height="329" key="GridCell.Tab.0.bottom" timestamp="1605497082489">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1201" height="275" key="GridCell.Tab.0.bottom" timestamp="1605566540061">
+      <screen x="66" y="27" width="2494" height="1053" />
     </state>
     <state width="914" height="329" key="GridCell.Tab.0.bottom/-1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1605497082489" />
     <state width="1516" height="500" key="GridCell.Tab.0.bottom/0.0.3072.1688@0.0.3072.1688" timestamp="1605481246906" />
-    <state width="914" height="329" key="GridCell.Tab.0.center" timestamp="1605497082488">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1201" height="275" key="GridCell.Tab.0.bottom/66.27.2494.1053@66.27.2494.1053" timestamp="1605566540061" />
+    <state width="1201" height="275" key="GridCell.Tab.0.center" timestamp="1605566540061">
+      <screen x="66" y="27" width="2494" height="1053" />
     </state>
     <state width="914" height="329" key="GridCell.Tab.0.center/-1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1605497082488" />
     <state width="1516" height="500" key="GridCell.Tab.0.center/0.0.3072.1688@0.0.3072.1688" timestamp="1605481246906" />
-    <state width="914" height="329" key="GridCell.Tab.0.left" timestamp="1605497082488">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1201" height="275" key="GridCell.Tab.0.center/66.27.2494.1053@66.27.2494.1053" timestamp="1605566540061" />
+    <state width="1201" height="275" key="GridCell.Tab.0.left" timestamp="1605566540060">
+      <screen x="66" y="27" width="2494" height="1053" />
     </state>
     <state width="914" height="329" key="GridCell.Tab.0.left/-1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1605497082488" />
     <state width="1516" height="500" key="GridCell.Tab.0.left/0.0.3072.1688@0.0.3072.1688" timestamp="1605481246906" />
-    <state width="914" height="329" key="GridCell.Tab.0.right" timestamp="1605497082488">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1201" height="275" key="GridCell.Tab.0.left/66.27.2494.1053@66.27.2494.1053" timestamp="1605566540060" />
+    <state width="1201" height="275" key="GridCell.Tab.0.right" timestamp="1605566540061">
+      <screen x="66" y="27" width="2494" height="1053" />
     </state>
     <state width="914" height="329" key="GridCell.Tab.0.right/-1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1605497082488" />
     <state width="1516" height="500" key="GridCell.Tab.0.right/0.0.3072.1688@0.0.3072.1688" timestamp="1605481246906" />
+    <state width="1201" height="275" key="GridCell.Tab.0.right/66.27.2494.1053@66.27.2494.1053" timestamp="1605566540061" />
     <state width="1516" height="500" key="GridCell.Tab.1.bottom" timestamp="1605481246906">
       <screen x="0" y="0" width="3072" height="1688" />
     </state>

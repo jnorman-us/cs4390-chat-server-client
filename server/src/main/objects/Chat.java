@@ -1,7 +1,7 @@
 package main.objects;
 
-
-public class Chat {
+public class Chat
+{
     private String message;
     private long time;
     private Subscriber sender;

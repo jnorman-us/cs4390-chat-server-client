@@ -4,26 +4,21 @@ import java.util.ArrayList;
 
 public class Session
 {
+    private String id;
     private Subscriber[] subscribers;
-    private ArrayList<Chat> history;
 
-    public Session(Subscriber a, Subscriber b)
+    public Session(String id, Subscriber a, Subscriber b)
     {
+        this.id = id;
+
         subscribers = new Subscriber[2];
         subscribers[0] = a;
         subscribers[1] = b;
-
-        history = new ArrayList<>();
     }
 
-    public void sendChat(Chat chat)
+    public String getId()
     {
-        history.add(chat);
-    }
-
-    public ArrayList<Chat> getHistory()
-    {
-        return history;
+        return id;
     }
 
     public Subscriber getOther(Subscriber me)
@@ -49,6 +44,6 @@ public class Session
 
     public String toString()
     {
-        return "Susbcriber 1: " + subscribers[0].toString() + "\nSubscriber 2: " + subscribers[1].toString();
+        return "Session<" + id + ">\n1: " + subscribers[0].toString() + "\n2: " + subscribers[1].toString();
     }
 }

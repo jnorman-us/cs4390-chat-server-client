@@ -39,11 +39,12 @@ public class ChatRequestReceiver extends Receiver
 
             if(my_session == null && their_session == null)
             {
-                Session our_session = new Session(me, them);
-                main.createSession(our_session);
+                main.createSession(me, them);
+                Session session = main.getSession(me);
 
                 // now attempt to send that message to the other guy
                 HashMap<String, String> their_message_data = new HashMap<>();
+                their_message_data.put("SESSION-ID", session.getId());
                 their_message_data.put("CLIENT-ID-B", me.clientID);
 
                 ChatStartedMessage chatStartedMessage = new ChatStartedMessage();
@@ -52,6 +53,7 @@ public class ChatRequestReceiver extends Receiver
 
                 // now attempt to send that message to ourselves
                 HashMap<String, String> our_message_data = new HashMap<>();
+                our_message_data.put("SESSION-ID", session.getId());
                 our_message_data.put("CLIENT-ID-B", them.clientID);
                 return new TCPResponse(false, chatStartedMessage.stringify(our_message_data));
             }

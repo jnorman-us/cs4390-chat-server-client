@@ -16,7 +16,8 @@ public class TCPWorker implements Runnable
     private static Receiver[] receivers = new Receiver[]{
             new ConnectReceiver(),
             new ShoutReceiver(),
-            new ChatRequestReceiver()
+            new ChatRequestReceiver(),
+            new ChatReceiver()
     };
 
     private Main main;

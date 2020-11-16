@@ -1,4 +1,5 @@
 
+
 # CS 4390 Project
 The group project for CS 4390 (Computer Networks) @ UTD. The Goal is to create a Server/Client chat utilizing UDP and TCP sockets. 
 
@@ -30,22 +31,56 @@ The initial packet sent from the Client to the Server via UDP.
 #### Example Packet:
 	{
 		"receiver": "HELLO",
-		"CLIENT-ID-A": "joseph-norman-dev"
+		"CLIENT-ID-A": "joseph-norman"
+	}
+    
+---
+### Challenge Packet
+The packet sent via UDP from server to client that challenges the client to authenticate itself.
+| **Key** | **Type** | **Example Value** | **Description** |
+|--|--|--|--|
+| `RAND` | String | `1938182376` | The random number that the client will use to authenticate itself using the MD5 algorithm |
+
+#### Example Packet:
+	{
+		"receiver": "CHALLENGE",
+		"RAND": "1938182376"
+	}
+    
+---
+### Response Packet
+The packet sent via UDP from client to server that the server uses to respond to the challenge provided. The value of `RES` is dictated by the formula:
+```		
+String K_A = "toe123"; //the client's secret key (password) 
+String RAND = "1938182376"; //value sent from server in the CHALLENGE Packet 
+String RES = MD5(K_A + "," + RAND);
+```
+
+| **Key** | **Type** | **Example Value** | **Description** |
+|--|--|--|--|
+| `CLIENT-ID` | String | `joseph-norman` | The client id of the Subscriber trying to respond to the challenge |
+| `RES` | String | `C2E67DCE66A2651386F6054FA112E61D` | The hash provided by the MD5 algorithm |
+
+#### Example Packet:
+	{
+		"receiver": "CHALLENGE",
+		"CLIENT-ID": "joseph-norman",
+		"RES": "961E5D0F404509D43AE2EFFF24489F7D"
 	}
     
 ---
 ### Auth Success Packet
-The packet that is sent via UDP from the server to the client once the client is authorized. It instructs the client to reconnect to the provided TCP port and to offer its cookie once connected.
+The packet that is sent via UDP from the server to the client once the client is authenticated (if the proper value of `RES` is found in the Response Packet). It instructs the client to reconnect to the provided TCP port and to offer its cookie once connected.
 | **Key** | **Type** | **Example Value** | **Description** |
 |--|--|--|--|
-| `PORT` | Integer | `5000` | The TCP port number that the client should connect to |
-| `RAND-COOKIE` | String | `gRx57aF!eE4?` | A completely random string that the client will use once it connects to the TCP port |
+| `PORT` | Integer | `8001` | The TCP port number that the client should connect to |
+| `RAND-COOKIE` | String | `1938182376` | The same string sent by the Challenge packet |
 
 #### Example Packet:
 	{
 		"receiver": "AUTH-SUCCESS",
-		"PORT": "5000",
-		"RAND-COOKIE": "gRx57aF!eE4?"
+		"PORT": "8001",
+		"RAND-COOKIE": "1938182376"
 	}
 	
 ---
@@ -63,12 +98,12 @@ The packet that is sent via UDP from the server to the client because it failed 
 The packet that is sent via TCP from client to server to authenticate the client and authorize further communication over TCP.
 | **Key** | **Type** | **Example Value** | **Description** |
 |--|--|--|--|
-| `RAND-COOKIE` | String | `gRx57aF!eE4?` | A completely random string that the client uses to authenitcate itself |
+| `RAND-COOKIE` | String | `1938182376` | A completely random string that the client uses to authenticate itself |
 
 #### Example Packet:
 	{
 		"receiver": "CONNECT",
-		"RAND-COOKIE": "gRx57aF!eE4?"
+		"RAND-COOKIE": "1938182376"
 	}
 ---
 ### Connected Packet
@@ -79,5 +114,38 @@ The packet that is sent via TCP from the server to the client in order to verify
 #### Example Packet:
 	{
 		"receiver": "CONNECTED"
+	}
+---
+### Chat Request Packet
+The packet that is sent via TCP from the client to the server to request a Session be created between the original sender and client B
+| **Key** | **Type** | **Example Value** | **Description** |
+|--|--|--|--|
+| `CLIENT-ID-B` | String | `austin-li` | The Client ID of the other subscriber |
+#### Example Packet:
+	{
+		"receiver": "CHAT-REQUEST",
+		"CLIENT-ID-B": "austin-li"
+	}
+---
+### Chat Started Packet
+The packet that is sent via TCP from the server to clients A and B that they are to be conjoined in a chat Session
+| **Key** | **Type** | **Example Value** | **Description** |
+|--|--|--|--|
+| `CLIENT-ID-B` | String | `austin-li` | The Client ID of the other subscriber in the Session |
+#### Example Packet:
+	{
+		"receiver": "CHAT-STARTED",
+		"CLIENT-ID-B": "austin-li"
+	}
+---
+### Unreachable Packet
+The packet that is sent via TCP from the server to the client to notify client A that client B was unreachable. Either they are not connected or are already in a Session with someone else
+| **Key** | **Type** | **Example Value** | **Description** |
+|--|--|--|--|
+| `CLIENT-ID-B` | String | `austin-li` | The Client ID of the unreachable subscriber |
+#### Example Packet:
+	{
+		"receiver": "UNREACHABLE",
+		"CLIENT-ID-B": "austin-li"
 	}
 ---

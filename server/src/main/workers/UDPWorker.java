@@ -1,11 +1,11 @@
 package main.workers;
 
 import main.Main;
-import main.objects.TCPResponse;
 import main.objects.UDPResponse;
 import main.receivers.HelloReceiver;
 import main.receivers.JSONData;
 import main.receivers.Receiver;
+import main.receivers.ResponseReceiver;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -15,7 +15,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class UDPWorker implements Runnable
 {
-    private static Receiver[] receivers = new Receiver[] { new HelloReceiver() };
+    private static Receiver[] receivers = new Receiver[] {
+            new HelloReceiver(),
+            new ResponseReceiver()
+    };
+
     // UDP server instance
     private Main main;
 

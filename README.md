@@ -139,12 +139,14 @@ The packet that is sent via TCP from the server to clients A and B that they are
 	}
 ---
 ### Chat Message Packet
-The packet that is sent via TCP between the clients, relayed by the server. This packet contains the actual chat message
+The packet that is sent via TCP between the clients, relayed by the server. This packet contains the actual chat message and the session id
 | **Key** | **Type** | **Example Value** | **Description** |
 |--|--|--|--|
+| `SESSION-ID` | String | `32453` | Session ID number |
 | `CHAT-MESSAGE` | String | `hello` | The chat message sent |
 #### Example Packet:
 	{
+		"SESSION-ID: "32453"
 		"CHAT-MESSAGE": "hello"
 	}
 ---

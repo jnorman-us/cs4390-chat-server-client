@@ -148,6 +148,7 @@ The packet that is sent via TCP between the clients, relayed by the server. This
 | `CHAT-MESSAGE` | String | `hello` | The chat message sent |
 #### Example Packet:
 	{
+		"receiver": "CHAT",
 		"SESSION-ID: "1",
 		"CHAT-MESSAGE": "hello"
 	}

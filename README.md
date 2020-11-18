@@ -132,21 +132,23 @@ The packet that is sent via TCP from the server to clients A and B that they are
 | **Key** | **Type** | **Example Value** | **Description** |
 |--|--|--|--|
 | `CLIENT-ID-B` | String | `austin-li` | The Client ID of the other subscriber in the Session |
+| `SESSION-ID` | String | `1` | The Session ID of Session |
 #### Example Packet:
 	{
 		"receiver": "CHAT-STARTED",
-		"CLIENT-ID-B": "austin-li"
+		"CLIENT-ID-B": "austin-li",
+		"SESSION-ID": "1"
 	}
 ---
 ### Chat Message Packet
 The packet that is sent via TCP between the clients, relayed by the server. This packet contains the actual chat message and the session id
 | **Key** | **Type** | **Example Value** | **Description** |
 |--|--|--|--|
-| `SESSION-ID` | String | `32453` | Session ID number |
+| `SESSION-ID` | String | `1` | Session ID number |
 | `CHAT-MESSAGE` | String | `hello` | The chat message sent |
 #### Example Packet:
 	{
-		"SESSION-ID: "32453"
+		"SESSION-ID: "1",
 		"CHAT-MESSAGE": "hello"
 	}
 ---
@@ -161,3 +163,4 @@ The packet that is sent via TCP from the server to the client to notify client A
 		"CLIENT-ID-B": "austin-li"
 	}
 ---
+

@@ -139,7 +139,7 @@ The packet that is sent via TCP from the server to clients A and B that they are
 	}
 ---
 ### Chat Message Packet
-The packet that is sent via TCP
+The packet that is sent via TCP between the clients, relayed by the server. This packet contains the actual chat message
 | **Key** | **Type** | **Example Value** | **Description** |
 |--|--|--|--|
 | `CHAT-MESSAGE` | String | `hello` | The chat message sent |

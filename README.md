@@ -153,7 +153,7 @@ The packet that is sent via TCP between the clients, relayed by the server. This
 		"CHAT-MESSAGE": "hello"
 	}
 ---
-### History Reponse Message Packet
+### History Request Message Packet
 The packet that is sent via TCP by the client A to request history of past chat messages with client b.
 | **Key** | **Type** | **Example Value** | **Description** |
 |--|--|--|--|

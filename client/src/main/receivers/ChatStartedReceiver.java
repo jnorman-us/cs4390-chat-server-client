@@ -26,7 +26,7 @@ public class ChatStartedReceiver extends Receiver {
 
     public TCPResponse action(Main main, Subscriber subscriber, JSONData data) {
         System.out.println("Chat started with " + getClientID(data) + ". Send the first message when you're ready." +
-                "\n\tIn order to receive a message, press ENTER.");
+                "\n\tSince we are using block Read Sockets, you must first send a message before you can receive a message");
 
         // {"receiver":"CHAT","CHAT-MESSAGE":""}
 

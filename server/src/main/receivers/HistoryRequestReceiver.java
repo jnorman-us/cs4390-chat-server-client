@@ -16,7 +16,7 @@ public class HistoryRequestReceiver extends Receiver
 {
     public HistoryRequestReceiver()
     {
-        super("HISTORY_REQ", new String[] { "CLIENT-ID-B" });
+        super("HISTORY-REQ", new String[] { "CLIENT-ID-B" });
     }
 
     public String getClientID(JSONData data) { return data.data.get("CLIENT-ID-B"); }

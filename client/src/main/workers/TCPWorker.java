@@ -71,8 +71,8 @@ public class TCPWorker {
                     //System.out.println(parsed);
                     parsed = reader.readLine();
                     System.out.println(parsed);
-                    sendMessageToSelf = false;
                 }
+                sendMessageToSelf = false;
 
                 if(parsed != null)
                 {
@@ -94,7 +94,6 @@ public class TCPWorker {
                                 parsed = "{\"receiver\": \"CONNECTED\"}";    //send CONNECTED message to self to return to "Connected" state
                                 sendMessageToSelf = true;
                             }
-
                             else {
                                 writer.println(response.message);
 /*
@@ -106,7 +105,6 @@ public class TCPWorker {
                                 }
 
  */
-
                                 if(response.kick)
                                 {
                                     //requestStop();

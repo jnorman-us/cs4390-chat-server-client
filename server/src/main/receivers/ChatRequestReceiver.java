@@ -41,6 +41,7 @@ public class ChatRequestReceiver extends Receiver
             {
                 main.createSession(me, them);
                 Session session = main.getSession(me);
+                System.out.println(session);
 
                 // now attempt to send that message to the other guy
                 HashMap<String, String> their_message_data = new HashMap<>();
@@ -62,7 +63,7 @@ public class ChatRequestReceiver extends Receiver
         }
 
         HashMap<String, String> message_data = new HashMap<>();
-        message_data.put("CLIENT-ID-B", them.clientID);
+        message_data.put("CLIENT-ID-B", getClientID(data));
 
         UnreachableMessage unreachableMessage = new UnreachableMessage();
         return new TCPResponse(false, unreachableMessage.stringify(message_data));

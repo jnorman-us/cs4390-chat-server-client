@@ -1,7 +1,6 @@
 package main.receivers;
 
 import main.Main;
-import main.messages.HistoryRequestMessage;
 import main.objects.Subscriber;
 import main.objects.TCPResponse;
 

@@ -2,11 +2,9 @@ package main.receivers;
 
 import main.Main;
 import main.messages.ChatMessage;
-import main.messages.ChatRequestMessage;
 import main.messages.EndRequestMessage;
 import main.objects.Subscriber;
 import main.objects.TCPResponse;
-import main.objects.UDPResponse;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -27,7 +25,8 @@ public class ChatStartedReceiver extends Receiver {
     }
 
     public TCPResponse action(Main main, Subscriber subscriber, JSONData data) {
-        System.out.println("Chat started with " + getClientID(data) + ". Send the first message when you're ready.");
+        System.out.println("Chat started with " + getClientID(data) + ". Send the first message when you're ready." +
+                "\n\tIn order to receive a message, press ENTER.");
 
         // {"receiver":"CHAT","CHAT-MESSAGE":""}
 
@@ -37,18 +36,21 @@ public class ChatStartedReceiver extends Receiver {
 
         //ACCOUNT FOR END REQUESTS
         if((userMessage.toLowerCase().trim()).equals("end chat")) {
+            System.out.println("ending chat... SessionID was " + getSessionID(data));
+
             //send EndRequestMessage to server
             EndRequestMessage endRequestMessage = new EndRequestMessage();
             HashMap<String, String> message_data = new HashMap<>();
-            message_data.put("END_NOTIF", "");
+            message_data.put("SESSION-ID", getSessionID(data));
             return new TCPResponse(false, endRequestMessage.stringify(message_data));
         }
-        //System.out.println(getClientID(data) + userInput);
 
         //send chat message to other client (via the server)
         ChatMessage chatMessage = new ChatMessage();
         HashMap<String, String> message_data = new HashMap<>();
+        message_data.put("SESSION-ID", getSessionID(data));
         message_data.put("CHAT-MESSAGE", userMessage);
+
         return new TCPResponse(false, chatMessage.stringify(message_data));
 
     }

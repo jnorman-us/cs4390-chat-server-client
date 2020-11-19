@@ -14,10 +14,8 @@ public class ChatMessageReceiver extends Receiver {
         super("CHAT", new String[]{"SESSION-ID", "CHAT-MESSAGE"});
 
     }
-    public String getClientID(JSONData data)
-    {
-        return data.data.get("CLIENT-ID-B");
-    }
+
+    public String getSessionID(JSONData data) { return data.data.get("SESSION-ID"); }
 
     //get the reply of the other client
     public String getChatMessage(JSONData data)
@@ -44,16 +42,19 @@ public class ChatMessageReceiver extends Receiver {
 
         //ACCOUNT FOR END REQUESTS
         if((userMessage.toLowerCase().trim()).equals("end chat")) {
+            System.out.println("CHAT ENDED... SessionID was " + getSessionID(data));
+
             //send EndRequestMessage to server
             EndRequestMessage endRequestMessage = new EndRequestMessage();
             HashMap<String, String> message_data = new HashMap<>();
-            message_data.put("END_NOTIF", "");
+            message_data.put("SESSION-ID", getSessionID(data));
             return new TCPResponse(false, endRequestMessage.stringify(message_data));
         }
 
         //send chat message to other client (via the server)
         ChatMessage chatMessage = new ChatMessage();
         HashMap<String, String> message_data = new HashMap<>();
+        message_data.put("SESSION-ID", getSessionID(data));
         message_data.put("CHAT-MESSAGE", userMessage);
         return new TCPResponse(false, chatMessage.stringify(message_data));
 

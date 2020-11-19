@@ -164,8 +164,8 @@ The packet that is sent via TCP by the server to the client who requested the hi
 	{
 		"receiver": "CHAT",
 		"CLIENT-ID": "josh-guzman", 
-		"SESSION-ID: "1",
-		"CHAT-MESSAGE": "hello"
+		"CHAT-MESSAGE": "hello",
+		"SESSION-ID: "1"		
 	}
 ---
 ### Unreachable Packet

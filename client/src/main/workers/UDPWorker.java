@@ -1,8 +1,8 @@
 package main.workers;
 
+import main.messages.HelloMessage;
 import main.objects.UDPResponse;
 import main.receivers.*;
-import main.messages.HelloMessage;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -10,7 +10,6 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class UDPWorker implements Runnable
 {
@@ -89,9 +88,9 @@ public class UDPWorker implements Runnable
      */
     public void run() {
         //Gather Login information from user
-       // boolean loginSuccessful = false;
-       // while(!loginSuccessful) {
-            try {
+        // boolean loginSuccessful = false;
+        // while(!loginSuccessful) {
+        try {
                 /*
                 //DECLARE & INITIALIZE VARIABLES
                 Scanner scan = new Scanner(System.in);
@@ -116,123 +115,60 @@ public class UDPWorker implements Runnable
 
                  */
 
-                //send HelloMessage to server
-                sendHelloMessage();
-            } catch (IOException e) {
+            //send HelloMessage to server
+            sendHelloMessage();
+        } catch (IOException e) {
 
-                System.out.println("Something went wrong while sending HELLO packet. ");
-            }
+            System.out.println("Something went wrong while sending HELLO packet. ");
+        }
 
-            //Challenge, response, and AUTHSUCCESS/AUTHFAILURE handled by the loop below in their respective receiver classes
+        //Challenge, response, and AUTHSUCCESS/AUTHFAILURE handled by the loop below in their respective receiver classes
 
-            byte[] received = new byte[65535];
-            DatagramPacket datagramPacket = null;
-            //String parsed = "";
+        byte[] received = new byte[65535];
+        DatagramPacket datagramPacket = null;
+        //String parsed = "";
 
-            //parsed = parse(received);
+        //parsed = parse(received);
 
-            //REPLACE WHILE LOOP CONDITION W/ OTHER CONDITION
-            while(true)
-            {
-                datagramPacket = new DatagramPacket(received, received.length);
-                try {
-                    socket.receive(datagramPacket);
+        while(true)
+        {
+            datagramPacket = new DatagramPacket(received, received.length);
+            try {
+                socket.receive(datagramPacket);
 
-                    String parsed = parse(received);
-                    JSONData data = new JSONData(parsed);
+                String parsed = parse(received);
+                JSONData data = new JSONData(parsed);
 
-                    for(Receiver receiver : receivers)
+                for(Receiver receiver : receivers)
+                {
+                    if(receiver.receivable(data))
                     {
-                        if(receiver.receivable(data))
-                        {
-                            UDPResponse response = receiver.action(null, null, data);
-                            //IF AUTH-SUCCESS RECEIVED, stop sending packets and stop udp worker.
-                            if (response.message == "AUTHENTICATED") {
-                                    //return data to main somehow
-                                    port_number_to_return = ((AuthSuccessReceiver) receiver).getPort(data);
-                                    rand_cookie_to_return = ((AuthSuccessReceiver) receiver).getCookie(data);
-                                    return;
-                            }
-                            byte[] bytes_to_send = response.message.getBytes();
-                            DatagramPacket sendPacket = new DatagramPacket(
-                                    bytes_to_send,
-                                    bytes_to_send.length,
-                                    datagramPacket.getAddress(),
-                                    datagramPacket.getPort()
-                            );
-
-                            socket.send(sendPacket);
+                        UDPResponse response = receiver.action(null, null, data);
+                        //IF AUTH-SUCCESS RECEIVED, stop sending packets and stop udp worker.
+                        if (response.message == "AUTHENTICATED") {
+                            //return data to main somehow
+                            port_number_to_return = ((AuthSuccessReceiver) receiver).getPort(data);
+                            rand_cookie_to_return = ((AuthSuccessReceiver) receiver).getCookie(data);
+                            socket.close();
+                            return;
                         }
+                        byte[] bytes_to_send = response.message.getBytes();
+                        DatagramPacket sendPacket = new DatagramPacket(
+                                bytes_to_send,
+                                bytes_to_send.length,
+                                datagramPacket.getAddress(),
+                                datagramPacket.getPort()
+                        );
+
+                        socket.send(sendPacket);
                     }
-                    Arrays.fill(received, (byte)0);
-                } catch (IOException exception) {
-                    System.out.println("IO Exception");
-                    break;
                 }
+                Arrays.fill(received, (byte)0);
+            } catch (IOException exception) {
+                System.out.println("IO Exception");
+                break;
             }
-
-/*
-            // receive CHALLENGE packet
-            try {
-                ChallengeReceiver challengeReceiver = new ChallengeReceiver(clientID,  );
-                byte[] received = new byte[65535];
-                DatagramPacket datagramPacket = null;
-                datagramPacket = new DatagramPacket(received, received.length);
-                socket.receive(datagramPacket);
-
-                String parsed = parse(received);
-                JSONData data = new JSONData(parsed);
-                System.out.println(parsed);
-
-                //parse data from JSON and send response to the server. See AUTHReceiver class
-                if (parsed.contains("AUTH-SUCCESS")) {
-                    //UDPResponse response = receiver.action(null, null, data);
-                    //AuthReceiver does NOT send a response. instead, rand_cookie and port_number are handed to main
-                    rand_cookie_to_return = receiver.getCookie(data);
-                    port_number_to_return = receiver.getPort(data);
-                    loginSuccessful = true;
-                } else {
-                    System.out.println("AUTHENTICATION FAILED. PLEASE TRY AGAIN.\n");
-                }
-
-            } catch (IOException e) {
-                System.out.println("Something went wrong with receiving AUTH packet");
-            }
-
-
-            // Client responds w/ a RESPONSE (Res) to authenticate itself.
-
-
-
-            //receive AuthSuccess Message
-            try {
-                AuthSuccessReceiver authSuccessReceiver = new AuthSuccessReceiver();
-                byte[] received = new byte[65535];
-                DatagramPacket datagramPacket = null;
-                datagramPacket = new DatagramPacket(received, received.length);
-                socket.receive(datagramPacket);
-
-                String parsed = parse(received);
-                JSONData data = new JSONData(parsed);
-                System.out.println(parsed);
-
-                //parse data from JSON and send response to the server. See AUTHReceiver class
-                if (parsed.contains("AUTH-SUCCESS")) {
-                    //UDPResponse response = receiver.action(null, null, data);
-                    //AuthReceiver does NOT send a response. instead, rand_cookie and port_number are handed to main
-                    rand_cookie_to_return = authSuccessReceiver.getCookie(data);
-                    port_number_to_return = authSuccessReceiver.getPort(data);
-                    loginSuccessful = true;
-                } else {
-                    System.out.println("AUTHENTICATION FAILED. PLEASE TRY AGAIN.\n");
-                }
-
-            } catch (IOException e) {
-                System.out.println("Something went wrong with receiving AUTH packet");
-            }
-*/
-      //  }
-
+        }
     }
 
 

@@ -20,7 +20,9 @@ public class TCPWorker {
             new ConnectedReceiver(),          //parse and respond to connection requests
             new ChatStartedReceiver(),
             new ChatMessageReceiver(),
-            new UnreachableReceiver()
+            new UnreachableReceiver(),
+            new EndNotifReceiver(),
+            new HistoryResponseReceiver()
     };
 
     public TCPWorker(String rand_cookie, int port_num, InetAddress server_ip) {
@@ -40,7 +42,7 @@ public class TCPWorker {
             BufferedReader reader = new BufferedReader(new InputStreamReader(TCPSocket.getInputStream()));
 
             String fromServer;
-            String TCPConnectRequest = "{\"receiver\": \"CONNECT\", \"RAND-COOKIE\": " + randCookie + "}";
+            String TCPConnectRequest = "{\"receiver\": \"CONNECT\", \"RAND-COOKIE\": " + "\"" + randCookie + "\"" + "}";
 
             if (TCPConnectRequest != null) {
                 System.out.println("Client: " + TCPConnectRequest);
@@ -66,7 +68,7 @@ public class TCPWorker {
             {
                 //skip receiving next message from the server if you are sending a message to yourself
                 if(!sendMessageToSelf) {
-                    System.out.println(parsed);
+                    //System.out.println(parsed);
                     parsed = reader.readLine();
                     System.out.println(parsed);
                     sendMessageToSelf = false;
@@ -85,22 +87,25 @@ public class TCPWorker {
                                 // don't output anything
                                 parsed = "";
                             }
-                            else if(response.toString().contains("CHAT_ENDED")) {
-                                //if receive END_NOTIF message from server, return to "Connected" state. This ends the chat session w/ current client.
-                                //to enter "Connected" state, send a CONNECT message to yourself.
+                            else if(response.toString().contains("RETURN_TO_CONNECTED_STATE")) {
+                                //if receive END_NOTIF message from server, EndNotifReceiver should make client enter "Connected" state.
+                                // This ends the chat session w/ current client.
+                                //to enter "Connected" state, send a CONNECTED message to yourself.
                                 parsed = "{\"receiver\": \"CONNECTED\"}";    //send CONNECTED message to self to return to "Connected" state
                                 sendMessageToSelf = true;
                             }
 
                             else {
                                 writer.println(response.message);
-
+/*
                                 //if user typed "end chat", an EndRequestMessage was sent to the server. If you detect an EndRequestMessage being sent to the server, go back to connected state.
-                                if(response.toString().contains("END_NOTIF")) {
+                                if(response.toString().contains("END_REQUEST")) {
                                     //to enter "Connected" state, send a CONNECT message to yourself.
                                     parsed = "{\"receiver\": \"CONNECTED\"}";    //send CONNECTED message to self to return to "Connected" state
                                     sendMessageToSelf = true;
                                 }
+
+ */
 
                                 if(response.kick)
                                 {
@@ -114,7 +119,7 @@ public class TCPWorker {
                 }
                 //else requestStop();
             }
-           // requestStop();
+            // requestStop();
 
 
             //send chat request message

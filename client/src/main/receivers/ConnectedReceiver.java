@@ -21,10 +21,10 @@ public class ConnectedReceiver extends Receiver {
         String clientID = "";
         boolean chatRequested = false;
 
-        System.out.println("NOW CONNECTED TO THE SERVER.");
+        System.out.println("YOU ARE CONNECTED TO THE SERVER.");
 
-        System.out.println("1) To INITIATE a connection to another client, enter Chat <client-id>");
-        System.out.println("2) To LISTEN for a connection instead, press enter");
+        System.out.println("To INITIATE a chat session: enter Chat <client-id>");
+        System.out.println("\tIf someone else sent you a chat request, press ENTER to begin chatting.");
         userInput = scan.nextLine();
 
         //if user submits a chat request, split the string to get the client that the user wants to connect to
@@ -43,7 +43,7 @@ public class ConnectedReceiver extends Receiver {
             return new TCPResponse(false, chatRequestMessage.stringify(message_data));
         }
         else {
-            System.out.println("listening...");
+            System.out.println("waiting to receive a connection request...");
             return new TCPResponse(false, "");
         }
 

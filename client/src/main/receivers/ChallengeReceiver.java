@@ -1,10 +1,8 @@
 package main.receivers;
 
 import main.Main;
-import main.messages.ChatMessage;
 import main.messages.ResponseMessage;
 import main.objects.Subscriber;
-import main.objects.TCPResponse;
 import main.objects.UDPResponse;
 
 import java.math.BigInteger;

@@ -1,10 +1,29 @@
 
 
+
 # CS 4390 Project
 The group project for CS 4390 (Computer Networks) @ UTD. The Goal is to create a Server/Client chat utilizing UDP and TCP sockets. 
 
-## Futher Documentation
-There are actually two different IntelliJ Projects in this repository, one for the Client program and the other for the Server. Because of this, there are two separate README fields within each folder `server/README.md` and `client/README.md` which will document each program individually.
+## Execution
+Execution of the code is fairly simple because we went ahead and bundled the program into an executable `.jar` file. Since this code has two parts, here are two different sets of instructions:
+
+### ... the Server
+This should be run first. Open a terminal window and navigate to the root directory of the project: `cs-4390-project/`. Then type in the following commands:
+
+	~/cs-4390-project~$ cd runnables
+	~/cs-4390-project/runnables~$ cd server
+	~/cs-4390-project/runnables/server~$ java -jar server.jar
+
+And now your server should be running. It won't immediately print anything, but if you just hit the `ENTER` key, you'll see a debug printout. Leave this terminal window open as we open the client.
+
+### ... and the Client
+Open another terminal window and navigate to the root directory of the project: `cs-4390-project/`. Then type in the following commands
+
+	~/cs-4390-project~$ cd runnables
+	~/cs-4390-project/runnables~$ cd client
+	~/cs-4390-project/runnables/client~$ java -jar client.jar
+
+You can do this however many times you want to create several instances of the client. **Make sure the server is open while you use the client**
 
 ## How we are formatting Packet Data
 Because this program requires two different programs to talk to each other via UDP/TCP, this README will document the types of packets that will be sent between the server and the client.

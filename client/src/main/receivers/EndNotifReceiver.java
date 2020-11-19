@@ -7,7 +7,7 @@ import main.objects.TCPResponse;
 public class EndNotifReceiver extends Receiver{
     public EndNotifReceiver()
     {
-        super("END_NOTIF", new String[] {"SESSION-ID"});
+        super("END-NOTIF", new String[] {"SESSION-ID"});
     }
 
     public String getSessionID(JSONData data) { return data.data.get("SESSION-ID"); }

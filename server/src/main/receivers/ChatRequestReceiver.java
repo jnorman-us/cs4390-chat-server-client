@@ -41,6 +41,7 @@ public class ChatRequestReceiver extends Receiver
             {
                 main.createSession(me, them);
                 Session session = main.getSession(me);
+                System.out.println(session);
 
                 // now attempt to send that message to the other guy
                 HashMap<String, String> their_message_data = new HashMap<>();

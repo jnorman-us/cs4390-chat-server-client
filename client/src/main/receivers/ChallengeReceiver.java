@@ -46,7 +46,7 @@ public class ChallengeReceiver extends Receiver {
         return new UDPResponse(responseMessage.stringify(message_data));
     }
 
-    public String MD5(String rand, String ka)
+    public static String MD5(String rand, String ka)
     {
         String key = rand + " " + ka;
         System.out.println(key);

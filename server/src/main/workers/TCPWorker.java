@@ -6,9 +6,20 @@ import main.objects.TCPResponse;
 import main.objects.Subscriber;
 import main.receivers.*;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class TCPWorker implements Runnable
@@ -31,6 +42,9 @@ public class TCPWorker implements Runnable
     private Socket socket;
     private PrintWriter writer;
 
+    private SecretKeySpec aesKey;
+    private Cipher cipher;
+
     public TCPWorker(Main main, Subscriber subscriber) throws IOException
     {
         this.main = main;
@@ -42,12 +56,24 @@ public class TCPWorker implements Runnable
 
         thread = new Thread(this);
         running = new AtomicBoolean(false);
+
+        try {
+            aesKey = new SecretKeySpec(this.subscriber.CK_A.getBytes(), "AES");
+            cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+        } catch (Exception e) {
+            throw new IOException();
+        }
     }
 
     public void start()
     {
         running.set(true);
         thread.start();
+    }
+
+    public boolean isRunning()
+    {
+        return running.get();
     }
 
     public void stop()
@@ -87,9 +113,11 @@ public class TCPWorker implements Runnable
 
             while(running.get())
             {
-                System.out.println(parsed);
                 parsed = reader.readLine();
-                System.out.println(parsed);
+                //System.out.println("TCPWorker for " + subscriber.clientID + " received: " + parsed);
+                parsed = decrypt(parsed);
+                //System.out.println("\t➤ " + parsed);
+
                 if(parsed != null)
                 {
                     JSONData data = new JSONData(parsed);
@@ -99,7 +127,8 @@ public class TCPWorker implements Runnable
                         if(receiver.receivable(data))
                         {
                             TCPResponse response = (TCPResponse)receiver.action(main, subscriber, data);
-                            writer.println(response.message);
+                            byte[] messageBytes = response.message.getBytes();
+                            send(response.message);
 
                             if(response.kick)
                             {
@@ -114,19 +143,42 @@ public class TCPWorker implements Runnable
         } catch(IOException exception) {
             System.out.println("TCP server on " + serverSocket.getLocalPort() + " experienced IO exception");
         }
-
         System.out.println("Stopping the TCP server2 on " + serverSocket.getLocalPort());
     }
 
     public void send(String message)
     {
+        //System.out.println("TCPWorker for " + subscriber.clientID + " sending: " + message);
+        message = encrypt(message);
+        //System.out.println("\t➤ " + message);
         if(socket != null && socket.isConnected())
             writer.println(message);
     }
 
-    public boolean isRunning()
+    public String encrypt(String message)
     {
-        return running.get();
+        try {
+            cipher.init(Cipher.ENCRYPT_MODE, aesKey);
+
+            byte[] values = cipher.doFinal(message.getBytes());
+            return Base64.getEncoder().encodeToString(values);
+        } catch (InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public String decrypt(String encrypted)
+    {
+        try {
+            cipher.init(Cipher.DECRYPT_MODE, aesKey);
+
+            byte[] values = Base64.getDecoder().decode(encrypted);
+            return new String(cipher.doFinal(values));
+        } catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     public String toString()

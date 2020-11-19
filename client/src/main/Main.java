@@ -9,6 +9,8 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.Scanner;
 
+import static main.receivers.ChallengeReceiver.MD5;
+
 
 public class Main {
     public static void main(String args[])
@@ -50,8 +52,9 @@ public class Main {
             //once udp_worker finishes running, we can get the RAND-COOKIE and PORT-NUMBER
             int portNum = Integer.parseInt(udp_worker.getPort_number_to_return());
             String randCookie = udp_worker.getRand_cookie_to_return();
+            String CK_A = MD5(randCookie, clientPW);
             InetAddress serverIP_arg = serverIP;
-            TCPWorker tcp_worker = new TCPWorker(randCookie, portNum, serverIP_arg);
+            TCPWorker tcp_worker = new TCPWorker(CK_A, randCookie, portNum, serverIP_arg);
 
             //run the TCP worker
             tcp_worker.run();

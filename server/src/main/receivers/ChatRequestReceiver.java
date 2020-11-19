@@ -27,7 +27,6 @@ public class ChatRequestReceiver extends Receiver
     public UDPResponse action(Main main, Subscriber me, JSONData data)
     {
         Subscriber them = main.getSubscriber(getClientID(data));
-        System.out.println(me + " " + them);
 
         if(!me.connected())
             return new TCPResponse(true, "who the fuck are you?");
@@ -41,7 +40,6 @@ public class ChatRequestReceiver extends Receiver
             {
                 main.createSession(me, them);
                 Session session = main.getSession(me);
-                System.out.println(session);
 
                 // now attempt to send that message to the other guy
                 HashMap<String, String> their_message_data = new HashMap<>();

@@ -3,18 +3,27 @@ package main.workers;
 import main.objects.TCPResponse;
 import main.receivers.*;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.security.InvalidKeyException;
+import java.util.Base64;
 
 public class TCPWorker {
-
+    String CK_A;
     String randCookie;
     int portNum;
     InetAddress serverIP;
+
+    private SecretKeySpec aesKey;
+    private Cipher cipher;
 
     private Receiver[] receivers = new Receiver[] {
             new ConnectedReceiver(),          //parse and respond to connection requests
@@ -25,12 +34,17 @@ public class TCPWorker {
             new HistoryResponseReceiver()
     };
 
-    public TCPWorker(String rand_cookie, int port_num, InetAddress server_ip) {
+    public TCPWorker(String CK_A, String rand_cookie, int port_num, InetAddress server_ip) {
+        this.CK_A = CK_A;
         randCookie = rand_cookie;
         portNum = port_num;
         serverIP = server_ip;
 
-
+        try {
+            aesKey = new SecretKeySpec(this.CK_A.getBytes(), "AES");
+            cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+        } catch (Exception e) {
+        }
     }
 
 
@@ -46,7 +60,7 @@ public class TCPWorker {
 
             if (TCPConnectRequest != null) {
                 System.out.println("Client: " + TCPConnectRequest);
-                writer.println(TCPConnectRequest);
+                writer.println(encrypt(TCPConnectRequest));
             }
 
             /*
@@ -70,7 +84,9 @@ public class TCPWorker {
                 if(!sendMessageToSelf) {
                     //System.out.println(parsed);
                     parsed = reader.readLine();
-                    System.out.println(parsed);
+                    //System.out.println("Received from server: " + parsed);
+                    parsed = decrypt(parsed);
+                    //System.out.println("\t➤ " + parsed);
                 }
                 sendMessageToSelf = false;
 
@@ -96,7 +112,7 @@ public class TCPWorker {
                                 sendMessageToSelf = true;
                             }
                             else {
-                                writer.println(response.message);
+                                writer.println(encrypt(response.message));
 /*
                                 //if user typed "end chat", an EndRequestMessage was sent to the server. If you detect an EndRequestMessage being sent to the server, go back to connected state.
                                 if(response.toString().contains("END_REQUEST")) {
@@ -116,7 +132,7 @@ public class TCPWorker {
                         }
                     }
                 }
-                //else requestStop();
+                else return;
             }
             // requestStop();
 
@@ -129,4 +145,29 @@ public class TCPWorker {
         }
     }
 
+    public String encrypt(String message)
+    {
+        try {
+            cipher.init(Cipher.ENCRYPT_MODE, aesKey);
+
+            byte[] values = cipher.doFinal(message.getBytes());
+            return Base64.getEncoder().encodeToString(values);
+        } catch (InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public String decrypt(String encrypted)
+    {
+        try {
+            cipher.init(Cipher.DECRYPT_MODE, aesKey);
+
+            byte[] values = Base64.getDecoder().decode(encrypted);
+            return new String(cipher.doFinal(values));
+        } catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 }

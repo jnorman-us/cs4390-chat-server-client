@@ -44,6 +44,6 @@ public class Session
 
     public String toString()
     {
-        return "Session<" + id + ">\n1: " + subscribers[0].toString() + "\n2: " + subscribers[1].toString();
+        return "Session<id: " + id + ">, <1: " + subscribers[0].clientID + " >, <2: " + subscribers[1].clientID + ">";
     }
 }

@@ -38,32 +38,7 @@ public class Subscriber
 
     public boolean checkXRES(String res)
     {
-        // run the MD5 algorithm here to calculate XRES
-        String XRES = MD5(randomCookie, K_A);
-        // then confirm that XRES == res
-        System.out.println(XRES + " " + res);
-        return (XRES.equals(res));
-    }
-
-    public String MD5(String rand, String ka)
-    {
-        String key = rand + " " + ka;
-
-        System.out.println(key);
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(key.getBytes());
-            byte[] digest = md.digest();
-            BigInteger no = new BigInteger(1, digest);
-            String ht = no.toString(16);
-            while (ht.length() < 32) {
-                ht = "0" + ht;
-            }
-            return ht;
-        }
-        catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
+        return (CK_A.equals(res));
     }
 
     public void generateRandomCookie()
@@ -108,5 +83,25 @@ public class Subscriber
     public String toString()
     {
         return clientID + ": <connected: " + connected + ">, <randomCookie: " + randomCookie + ">, <CK_A: " + CK_A + ">";
+    }
+
+    public static String MD5(String rand, String ka)
+    {
+        String key = rand + " " + ka;
+
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(key.getBytes());
+            byte[] digest = md.digest();
+            BigInteger no = new BigInteger(1, digest);
+            String ht = no.toString(16);
+            while (ht.length() < 32) {
+                ht = "0" + ht;
+            }
+            return ht;
+        }
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

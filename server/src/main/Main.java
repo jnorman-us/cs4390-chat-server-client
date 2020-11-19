@@ -159,19 +159,25 @@ public class Main
         toReturn += "Subscribers: -----------\n";
         for(Subscriber subscriber : subscribers.values())
         {
-            toReturn += "\t" + subscriber.toString() + "\n";
+            toReturn += "\t➤ " + subscriber.toString() + "\n";
         }
 
         toReturn += "TCP Workers: -----------\n";
         for(TCPWorker tcpWorker : tcp_workers.values())
         {
-            toReturn += "\t" + tcpWorker.toString() + "\n";
+            toReturn += "\t➤ " + tcpWorker.toString() + "\n";
         }
 
         toReturn += "Sessions: --------------\n";
         for(Session session : sessions.values())
         {
-            toReturn += "\t" + session.toString() + "\n";
+            toReturn += "\t➤ " + session.toString() + "\n";
+        }
+
+        toReturn += "Chats: --------------\n";
+        for(Chat chat : chatHistory)
+        {
+            toReturn += "\t➤ " + chat.toString() + "\n";
         }
         return toReturn;
     }

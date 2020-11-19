@@ -37,7 +37,7 @@ public class HistoryRequestReceiver extends Receiver
             for (int i = 0; i < chatHistory.size(); i++) {
                 //Creating the JSON packet
                 HashMap<String, String> past_chat = new HashMap<>();
-                past_chat.put("CLIENT-ID", sender.clientID);
+                past_chat.put("CLIENT-ID", chatHistory.get(i).getSender().clientID);
                 past_chat.put("CHAT-MESSAGE", chatHistory.get(i).getMessage());
                 past_chat.put("SESSION-ID", chatHistory.get(i).getSession().getId());
                 past_chat.put("LAST", "false");

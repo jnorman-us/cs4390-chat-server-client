@@ -36,5 +36,8 @@ public class Chat
             Status = StatusMessages.FAILED;
     }
 
-
+    public String toString()
+    {
+        return "<" + session.getId() + "> " + sender.clientID + ": " + message + " ➤ " + receiver.clientID;
+    }
 }

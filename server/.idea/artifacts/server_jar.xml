@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="server:jar">
+    <output-path>$PROJECT_DIR$/../runnables/server</output-path>
+    <root id="archive" name="server.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/../runnables/server/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="server" />
+      <element id="library" level="project" name="json-simple-1.1" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/json-simple-1.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

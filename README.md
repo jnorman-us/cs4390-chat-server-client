@@ -153,6 +153,21 @@ The packet that is sent via TCP between the clients, relayed by the server. This
 		"CHAT-MESSAGE": "hello"
 	}
 ---
+### History Reponse Message Packet
+The packet that is sent via TCP by the server to the client who requested the history.
+| **Key** | **Type** | **Example Value** | **Description** |
+|--|--|--|--|
+| `CLIENT-ID` | String | `josh-guzman` | Client-ID of the client who sent the chat message |
+| `CHAT-MESSAGE` | String | `hello` | The chat message sent |
+| `SESSION-ID` | String | `1` | The Session-ID of the chat message |
+#### Example Packet:
+	{
+		"receiver": "CHAT",
+		"CLIENT-ID": "josh-guzman", 
+		"SESSION-ID: "1",
+		"CHAT-MESSAGE": "hello"
+	}
+---
 ### Unreachable Packet
 The packet that is sent via TCP from the server to the client to notify client A that client B was unreachable. Either they are not connected or are already in a Session with someone else
 | **Key** | **Type** | **Example Value** | **Description** |

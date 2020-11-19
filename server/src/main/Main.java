@@ -1,5 +1,6 @@
 package main;
 
+import main.objects.Chat;
 import main.objects.Session;
 import main.objects.Subscriber;
 import main.workers.TCPWorker;
@@ -37,6 +38,9 @@ public class Main
     private HashMap<String, Session> sessions;
     private int sessionID;
 
+    //ArrayList of all chat history
+    private ArrayList <Chat> chatHistory = new ArrayList<Chat>();
+
     private UDPWorker udp_worker; // one UDP server
     private HashMap<String, TCPWorker> tcp_workers;
 
@@ -55,6 +59,25 @@ public class Main
         tcp_workers = new HashMap<>();
 
         udp_worker.start();
+    }
+
+    //Add a chat to server's chat history
+    public void addToChatHistory(Chat message) { chatHistory.add(message); }
+
+    //Return chat all history
+    public ArrayList<Chat> returnChatHistory() { return chatHistory; }
+    //Return chat history from two subscribers
+    public ArrayList<Chat> returnChatHistory(Subscriber sub1, Subscriber sub2)
+    {
+        ArrayList<Chat> returnList = new ArrayList<Chat>();
+        for(int i = 0; i < chatHistory.size(); i++)
+        {
+            if((chatHistory.get(i).getSender().equals(sub1) && chatHistory.get(i).getReceiver().equals(sub2))
+            || (chatHistory.get(i).getSender().equals(sub2) && chatHistory.get(i).getReceiver().equals(sub1))){
+                returnList.add(chatHistory.get(i));
+            }
+        }
+        return returnList;
     }
 
     public boolean createTCPWorker(Subscriber subscriber)

@@ -18,6 +18,7 @@ public class TCPWorker implements Runnable
             new ChatRequestReceiver(),
             new ChatReceiver(),
             new EndRequestReceiver(),
+            new HistoryRequestReceiver()
     };
 
     private Main main;

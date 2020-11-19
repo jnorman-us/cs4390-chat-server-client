@@ -27,8 +27,13 @@ public class HistoryRequestReceiver extends Receiver
         if(!sender.connected())
             return new TCPResponse(true, "not connected");
 
+        Subscriber receiver = main.getSubscriber(getClientID(data));
+
+        if(receiver == null)
+            return new TCPResponse(false, "not a proper client id");
+
         ArrayList<Chat> chatHistory = new ArrayList<Chat>();
-        chatHistory = main.returnChatHistory(sender, main.getSubscriber(getClientID(data)));
+        chatHistory = main.returnChatHistory(sender, receiver);
 
         for(int i = 0; i < chatHistory.size(); i++)
         {
@@ -37,11 +42,20 @@ public class HistoryRequestReceiver extends Receiver
             past_chat.put("CLIENT-ID", sender.clientID);
             past_chat.put("CHAT-MESSAGE", chatHistory.get(i).getMessage());
             past_chat.put("SESSION-ID", chatHistory.get(i).getSession().getId());
+            past_chat.put("LAST", "false");
 
             HistoryResponseMessage historyResponse = new HistoryResponseMessage();
             TCPWorker worker = main.getTCPWorker(sender);
             worker.send(historyResponse.stringify(past_chat));
         }
-        return new TCPResponse(false, "");
+
+        HashMap<String, String> last_chat = new HashMap<>();
+        last_chat.put("CLIENT-ID", "");
+        last_chat.put("CHAT-MESSAGE", "");
+        last_chat.put("SESSION-ID", "");
+        last_chat.put("LAST", "true");
+
+        HistoryResponseMessage historyResponse = new HistoryResponseMessage();
+        return new TCPResponse(false, historyResponse.stringify(last_chat));
     }
 }

@@ -154,6 +154,17 @@ The packet that is sent via TCP between the clients, relayed by the server. This
 	}
 ---
 ### History Reponse Message Packet
+The packet that is sent via TCP by the client A to request history of past chat messages with client b.
+| **Key** | **Type** | **Example Value** | **Description** |
+|--|--|--|--|
+| `CLIENT-ID-B` | String | `josh-guzman` | Client-ID of the subscriber that client A is requesting chat history with |
+#### Example Packet:
+	{
+		"receiver": "HISTORY_REQ",
+		"CLIENT-ID-B": "josh-guzman"		
+	}
+---
+### History Reponse Message Packet
 The packet that is sent via TCP by the server to the client who requested the history.
 | **Key** | **Type** | **Example Value** | **Description** |
 |--|--|--|--|

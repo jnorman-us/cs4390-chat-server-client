@@ -11,6 +11,7 @@ public class Subscriber
 
     public String clientID;
     public String K_A; // the client's secret key
+    public String CK_A; // the client's cyphering key
 
     public String randomCookie;
     public int port;
@@ -23,6 +24,7 @@ public class Subscriber
     {
         clientID = id;
         this.K_A = K_A;
+        CK_A = "";
 
         randomCookie = "";
         port = -1;
@@ -74,6 +76,7 @@ public class Subscriber
         {
             randomCookie += (int)(Math.random() * 10);
         }
+        CK_A = MD5(randomCookie, K_A);
     }
 
     public void generatePortNumber()
@@ -104,6 +107,6 @@ public class Subscriber
 
     public String toString()
     {
-        return clientID + ": <connected: " + connected + ">";
+        return clientID + ": <connected: " + connected + ">, <randomCookie: " + randomCookie + ">, <CK_A: " + CK_A + ">";
     }
 }

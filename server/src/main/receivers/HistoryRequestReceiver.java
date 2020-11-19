@@ -29,24 +29,23 @@ public class HistoryRequestReceiver extends Receiver
 
         Subscriber receiver = main.getSubscriber(getClientID(data));
 
-        if(receiver == null)
-            return new TCPResponse(false, "not a proper client id");
-
-        ArrayList<Chat> chatHistory = new ArrayList<Chat>();
-        chatHistory = main.returnChatHistory(sender, receiver);
-
-        for(int i = 0; i < chatHistory.size(); i++)
+        if(receiver != null)
         {
-            //Creating the JSON packet
-            HashMap<String, String> past_chat = new HashMap<>();
-            past_chat.put("CLIENT-ID", sender.clientID);
-            past_chat.put("CHAT-MESSAGE", chatHistory.get(i).getMessage());
-            past_chat.put("SESSION-ID", chatHistory.get(i).getSession().getId());
-            past_chat.put("LAST", "false");
+            ArrayList<Chat> chatHistory = new ArrayList<Chat>();
+            chatHistory = main.returnChatHistory(sender, receiver);
 
-            HistoryResponseMessage historyResponse = new HistoryResponseMessage();
-            TCPWorker worker = main.getTCPWorker(sender);
-            worker.send(historyResponse.stringify(past_chat));
+            for (int i = 0; i < chatHistory.size(); i++) {
+                //Creating the JSON packet
+                HashMap<String, String> past_chat = new HashMap<>();
+                past_chat.put("CLIENT-ID", sender.clientID);
+                past_chat.put("CHAT-MESSAGE", chatHistory.get(i).getMessage());
+                past_chat.put("SESSION-ID", chatHistory.get(i).getSession().getId());
+                past_chat.put("LAST", "false");
+
+                HistoryResponseMessage historyResponse = new HistoryResponseMessage();
+                TCPWorker worker = main.getTCPWorker(sender);
+                worker.send(historyResponse.stringify(past_chat));
+            }
         }
 
         HashMap<String, String> last_chat = new HashMap<>();

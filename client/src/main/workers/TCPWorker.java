@@ -87,7 +87,8 @@ public class TCPWorker {
                                 // don't output anything
                                 parsed = "";
                             }
-                            else if(response.toString().contains("RETURN_TO_CONNECTED_STATE") || response.toString().contains("HISTORY_VIEWED")) {
+                            else if(response.toString().contains("RETURN_TO_CONNECTED_STATE") || response.toString().contains("HISTORY_VIEWED")
+                                    || response.toString().contains("UNREACHABLE")) {
                                 //if receive END_NOTIF message from server, EndNotifReceiver should make client enter "Connected" state.
                                 // This ends the chat session w/ current client.
                                 //to enter "Connected" state, send a CONNECTED message to yourself.

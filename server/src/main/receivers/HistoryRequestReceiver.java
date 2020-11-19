@@ -36,6 +36,7 @@ public class HistoryRequestReceiver extends Receiver
             HashMap<String, String> past_chat = new HashMap<>();
             past_chat.put("CLIENT-ID", sender.clientID);
             past_chat.put("CHAT-MESSAGE", chatHistory.get(i).getMessage());
+            past_chat.put("SESSION-ID", chatHistory.get(i).getSession().toString());
 
             HistoryResponseMessage historyResponse = new HistoryResponseMessage();
             TCPWorker worker = main.getTCPWorker(sender);

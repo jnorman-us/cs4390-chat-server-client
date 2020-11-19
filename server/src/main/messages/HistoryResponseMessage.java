@@ -5,6 +5,6 @@ public class HistoryResponseMessage extends Message
 {
     public HistoryResponseMessage()
     {
-        super("HISTORY_RESP", new String[] { "CLIENT-ID-B", "CHAT-MESSAGE" });
+        super("HISTORY_RESP", new String[] { "CLIENT-ID-B", "CHAT-MESSAGE", "SESSION_ID" });
     }
 }

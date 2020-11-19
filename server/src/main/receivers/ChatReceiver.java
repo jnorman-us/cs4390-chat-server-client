@@ -39,7 +39,7 @@ public class ChatReceiver extends Receiver
             Subscriber receiver = this_session.getOther(sender);
 
             //Create new Chat and add it to chat history in main
-            Chat newMessage = new Chat(getChatMessage(data), sender, receiver);
+            Chat newMessage = new Chat(getChatMessage(data), sender, receiver, this_session);
             main.addToChatHistory(newMessage);
 
             //Creating the JSON packet

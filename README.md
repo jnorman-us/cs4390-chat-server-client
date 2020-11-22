@@ -4,6 +4,8 @@
 # CS 4390 Project
 The group project for CS 4390 (Computer Networks) @ UTD. The Goal is to create a Server/Client chat utilizing UDP and TCP sockets. 
 
+This project was written using Intellij IDEA 2020.2.3 (Community Edition), using OpenJDK 14. 
+
 ## Execution
 Execution of the code is fairly simple because we went ahead and bundled the program into an executable `.jar` file. Since this code has two parts, here are two different sets of instructions:
 

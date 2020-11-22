@@ -45,6 +45,8 @@ public class ChatStartedReceiver extends Receiver {
             return new TCPResponse(false, endRequestMessage.stringify(message_data));
         }
 
+
+
         //send chat message to other client (via the server)
         ChatMessage chatMessage = new ChatMessage();
         HashMap<String, String> message_data = new HashMap<>();

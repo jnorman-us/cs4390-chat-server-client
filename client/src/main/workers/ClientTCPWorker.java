@@ -16,7 +16,7 @@ import java.net.Socket;
 import java.security.InvalidKeyException;
 import java.util.Base64;
 
-public class TCPWorker {
+public class ClientTCPWorker {
     String CK_A;
     String randCookie;
     int portNum;
@@ -34,7 +34,7 @@ public class TCPWorker {
             new HistoryResponseReceiver()
     };
 
-    public TCPWorker(String CK_A, String rand_cookie, int port_num, InetAddress server_ip) {
+    public ClientTCPWorker(String CK_A, String rand_cookie, int port_num, InetAddress server_ip) {
         this.CK_A = CK_A;
         randCookie = rand_cookie;
         portNum = port_num;
@@ -52,6 +52,8 @@ public class TCPWorker {
         try {
             //Attempt to start TCP connection, in the future maybe contact TCPWorker in order to start communication
             Socket TCPSocket = new Socket(serverIP, portNum);
+            System.out.println("local client socket port is: " + TCPSocket.getLocalPort());
+            System.out.println("remote server socket port is: " + TCPSocket.getPort());
             PrintWriter writer = new PrintWriter(TCPSocket.getOutputStream(), true);
             BufferedReader reader = new BufferedReader(new InputStreamReader(TCPSocket.getInputStream()));
 

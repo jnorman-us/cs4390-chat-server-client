@@ -56,6 +56,10 @@ public class ConnectedReceiver extends Receiver {
 
             return new TCPResponse(false, chatRequestMessage.stringify(message_data));
 
+        } else if((userInput.toLowerCase().trim()).equals("log off")) {
+            System.out.println("Logging off... ");
+            System.exit(0);
+            return new TCPResponse(false, "");
         }
         else {
             System.out.println("waiting to receive a connection request...");

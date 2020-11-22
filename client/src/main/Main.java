@@ -1,11 +1,9 @@
 package main;
 
-import main.workers.TCPWorker;
-import main.workers.UDPWorker;
+import main.workers.ClientTCPWorker;
+import main.workers.ClientUDPWorker;
 
-import java.io.IOException;
 import java.net.DatagramPacket;
-import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.Scanner;
 
@@ -45,7 +43,7 @@ public class Main {
             //==========================================
 
             //Start UDP worker to begin authentication phases w/ server
-            UDPWorker udp_worker = new UDPWorker(8000, clientID, clientPW, serverIP);
+            ClientUDPWorker udp_worker = new ClientUDPWorker(8000, clientID, clientPW, serverIP);
             udp_worker.run();
 
 
@@ -54,7 +52,7 @@ public class Main {
             String randCookie = udp_worker.getRand_cookie_to_return();
             String CK_A = MD5(randCookie, clientPW);
             InetAddress serverIP_arg = serverIP;
-            TCPWorker tcp_worker = new TCPWorker(CK_A, randCookie, portNum, serverIP_arg);
+            ClientTCPWorker tcp_worker = new ClientTCPWorker(CK_A, randCookie, portNum, serverIP_arg);
 
             //run the TCP worker
             tcp_worker.run();

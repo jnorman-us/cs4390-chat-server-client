@@ -24,6 +24,18 @@ public class Main
         main.subscribers.put("josh-guzman", new Subscriber("josh-guzman", "bro123"));
         main.subscribers.put("kevin-salinda", new Subscriber("kevin-salinda", "moe123"));
 
+        main.subscribers.put("user1", new Subscriber("user1", "pass"));
+        main.subscribers.put("user2", new Subscriber("user2", "pass"));
+        main.subscribers.put("user3", new Subscriber("user3", "pass"));
+        main.subscribers.put("user4", new Subscriber("user4", "pass"));
+        main.subscribers.put("user5", new Subscriber("user5", "pass"));
+        main.subscribers.put("user6", new Subscriber("user6", "pass"));
+        main.subscribers.put("user7", new Subscriber("user7", "pass"));
+        main.subscribers.put("user8", new Subscriber("user8", "pass"));
+        main.subscribers.put("user9", new Subscriber("user9", "pass"));
+        main.subscribers.put("user10", new Subscriber("user10", "pass"));
+
+
         Scanner reader = new Scanner(System.in);
 
         while(true)

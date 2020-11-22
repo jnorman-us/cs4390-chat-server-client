@@ -11,7 +11,7 @@ import java.net.InetAddress;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class UDPWorker implements Runnable
+public class ClientUDPWorker implements Runnable
 {
     // member variables
     private DatagramSocket socket;
@@ -42,7 +42,7 @@ public class UDPWorker implements Runnable
         return udpServerIP;
     }
 
-    public UDPWorker(int port_arg, String clientID_arg, String clientPW_arg, InetAddress udpServerIP_arg) throws IOException
+    public ClientUDPWorker(int port_arg, String clientID_arg, String clientPW_arg, InetAddress udpServerIP_arg) throws IOException
     {
         socket = new DatagramSocket();
         udpPort = port_arg;

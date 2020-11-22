@@ -7,8 +7,6 @@ public class Chat
     private Subscriber sender;
     private Subscriber receiver;
     private Session session;
-    private enum StatusMessages{SUCCESS, FAILED};
-    private StatusMessages Status;
 
     //Create new chat with message, sender and receiver
     public Chat(String message, Subscriber sender, Subscriber receiver, Session session)
@@ -26,15 +24,7 @@ public class Chat
     public Session getSession() { return session; }
     public Subscriber getSender() { return sender; }
     public Subscriber getReceiver() { return receiver; }
-    public StatusMessages getStatus() { return Status; }
 
-    public void setStatus(String status)
-    {
-        if(status.equalsIgnoreCase("SUCCESS"))
-            Status = StatusMessages.SUCCESS;
-        else if(status.equalsIgnoreCase("FAILED"))
-            Status = StatusMessages.FAILED;
-    }
 
     public String toString()
     {

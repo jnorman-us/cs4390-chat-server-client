@@ -32,6 +32,6 @@ public class ConnectReceiver extends Receiver
             ConnectedMessage connectedMessage = new ConnectedMessage();
             return new TCPResponse(false, connectedMessage.stringify(new HashMap<>()));
         }
-        return new TCPResponse(true, "get the FUCK out");
+        return new TCPResponse(true, "get out");
     }
 }

@@ -29,7 +29,7 @@ public class ChatRequestReceiver extends Receiver
         Subscriber them = main.getSubscriber(getClientID(data));
 
         if(!me.connected())
-            return new TCPResponse(true, "who the fuck are you?");
+            return new TCPResponse(true, "who are you?");
 
         if(them != null && them.connected() && !them.equals(me))
         {
@@ -57,7 +57,7 @@ public class ChatRequestReceiver extends Receiver
                 return new TCPResponse(false, chatStartedMessage.stringify(our_message_data));
             }
             if(my_session != null && their_session == null)
-                return new TCPResponse(false, "the fuck, you're already in a chat");
+                return new TCPResponse(false, "you're already in a chat");
         }
 
         HashMap<String, String> message_data = new HashMap<>();

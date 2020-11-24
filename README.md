@@ -244,7 +244,7 @@ The packet that is sent via TCP from the server to the client to notify client A
 ---
 
 ### End Request Packet
-The packet that is sent via TCP from the client to the server to notify the server that the client wants the chat session to end. The message is sent whenever a user types "end chat"
+The packet that is sent via TCP from the client to the server to notify the server that the client wants the current chat session to end. The message is sent whenever a user enters "end chat" during the chat phase
 | **Key** | **Type** | **Example Value** | **Description** |
 |--|--|--|--|
 | `SESSION-ID` | String | `` | The session ID of the client's current chat |

@@ -1,6 +1,7 @@
 
 
 
+
 # CS 4390 Project
 The group project for CS 4390 (Computer Networks) @ UTD. The Goal is to create a Server/Client chat utilizing UDP and TCP sockets. 
 
@@ -26,6 +27,25 @@ Open another terminal window and navigate to the root directory of the project: 
 	~/cs-4390-project/runnables/client~$ java -jar client.jar
 
 You can do this however many times you want to create several instances of the client. **Make sure the server is open while you use the client**
+
+### Client-ID/Password Combinations
+Here is a table of the client-id/password combinations of our subscribers. They are here for you to use to login.
+| **Client ID** | **Password** |
+|--|--|
+| austin-li | `yo123` |
+| joseph-norman | `toe123` |
+| josh-guzman | `bro123` |
+| kevin-salinda | `moe123` |
+| user1 | `pass` |
+| user2 | `pass` |
+| user3 | `pass` |
+| user4 | `pass` |
+| user5 | `pass` |
+| user6 | `pass` |
+| user7 | `pass` |
+| user8 | `pass` |
+| user9 | `pass` |
+| user10 | `pass` |
 
 ## How we are formatting Packet Data
 Because this program requires two different programs to talk to each other via UDP/TCP, this README will document the types of packets that will be sent between the server and the client.
